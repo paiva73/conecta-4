@@ -5,28 +5,30 @@ const Context = createContext();
 export const ContextProvider = ({ children }) => {
     const tableroInicial = Array.from({ length: 6 }, () => new Array(7).fill(null));
     // Tablero
-    const [tablero, setTablero] = useState(JSON.parse(localStorage.getItem('tableroActual')) || tableroInicial);
+    const [tablero, setTablero] = useState(JSON.parse(sessionStorage.getItem('tableroActual')) || tableroInicial);
     const [jugadorActual, setJugadorActual] = useState(
-        localStorage.getItem('jugadorActual')
+        sessionStorage.getItem('jugadorActual')
         ||
-        localStorage.getItem('nombreUno')
+        sessionStorage.getItem('nombreUno')
         ||
         '');
     const [isHover, setIsHover] = useState(null);
     const [hoverColumn, setHoverColumn] = useState(null);
     const [winner, setWinner] = useState(null);
     const [gameOver, setGameOver] = useState(false);
-    const [victoriasJugadorUno, setVictoriasJugadorUno] = useState(parseInt(localStorage.getItem('victoriasUno'), 10) || 0);
-    const [victoriasJugadorDos, setVictoriasJugadorDos] = useState(parseInt(localStorage.getItem('victoriasDos'), 10) || 0);
+    const [victoriasJugadorUno, setVictoriasJugadorUno] = useState(parseInt(sessionStorage.getItem('victoriasUno'), 10) || 0);
+    const [victoriasJugadorDos, setVictoriasJugadorDos] = useState(parseInt(sessionStorage.getItem('victoriasDos'), 10) || 0);
+    const [tableroGanador, setTableroGanador] = useState(JSON.parse(sessionStorage.getItem('tableroGanador')) || null);
     // Inicio
-    const [jugadorUnoName, setJugadorUnoName] = useState(localStorage.getItem('nombreUno') || '');
-    const [jugadorDosName, setJugadorDosName] = useState(localStorage.getItem('nombreDos') || '');
-    const [colorSeleccionadoUno, setColorSeleccionadoUno] = useState(localStorage.getItem('colorUno') || '');
-    const [colorSeleccionadoDos, setColorSeleccionadoDos] = useState(localStorage.getItem('colorDos') || '');
+    const [jugadorUnoName, setJugadorUnoName] = useState(sessionStorage.getItem('nombreUno') || '');
+    const [jugadorDosName, setJugadorDosName] = useState(sessionStorage.getItem('nombreDos') || '');
+    const [colorSeleccionadoUno, setColorSeleccionadoUno] = useState(sessionStorage.getItem('colorUno') || '');
+    const [colorSeleccionadoDos, setColorSeleccionadoDos] = useState(sessionStorage.getItem('colorDos') || '');
     const [errorColor, setErrorColor] = useState('');
     const [formError, setFormError] = useState('');
     const [nameError, setNameError] = useState('');
     const colores = ['red', 'blue', 'green', 'yellow', 'orange', 'purple'];
+    const[isModalOpen, setIsModalOpen] = useState('');
     // Retorno los estados/setters
     return (
         <Context.Provider
@@ -63,6 +65,10 @@ export const ContextProvider = ({ children }) => {
                 nameError,
                 setNameError,
                 colores,
+                tableroGanador,
+                setTableroGanador,
+                isModalOpen,
+                setIsModalOpen,
             }}
         >
             {children}

@@ -32,19 +32,9 @@ export const funciones = () => {
     setErrorColor,
     setFormError,
     setNameError,
+    tableroGanador,
+    setTableroGanador
   } = useContext(Context);
-  // Borro los datos del storage cuando cierro la ventana.
-  useEffect(() => {
-    const handleUnload = () => {
-      localStorage.clear();
-    };
-
-    window.addEventListener('unload', handleUnload);
-
-    return () => {
-      window.removeEventListener('unload', handleUnload);
-    };
-  }, []);
   // Función para manejar el color seleccionado uno y el error.
   const handleColorUno = (color) => {
     if (colorSeleccionadoDos === color) {
@@ -78,10 +68,10 @@ export const funciones = () => {
       setFormError('¡Debes completar todos los campos!');
     } else {
       try {
-        localStorage.setItem('nombreUno', jugadorUnoName);
-        localStorage.setItem('nombreDos', jugadorDosName);
-        localStorage.setItem('colorUno', colorSeleccionadoUno);
-        localStorage.setItem('colorDos', colorSeleccionadoDos);
+        sessionStorage.setItem('nombreUno', jugadorUnoName);
+        sessionStorage.setItem('nombreDos', jugadorDosName);
+        sessionStorage.setItem('colorUno', colorSeleccionadoUno);
+        sessionStorage.setItem('colorDos', colorSeleccionadoDos);
 
       } catch (error) {
         console.log(error);
@@ -93,9 +83,9 @@ export const funciones = () => {
   // useEffect para actualizar la cantidad de victorias en el storage
   useEffect(() => {
     try {
-      localStorage.setItem('victoriasUno', victoriasJugadorUno);
-      localStorage.setItem('victoriasDos', victoriasJugadorDos);
-      localStorage.setItem('jugadorActual', jugadorActual);
+      sessionStorage.setItem('victoriasUno', victoriasJugadorUno);
+      sessionStorage.setItem('victoriasDos', victoriasJugadorDos);
+      sessionStorage.setItem('jugadorActual', jugadorActual);
     } catch (error) {
       console.log(error);
     }
@@ -126,7 +116,7 @@ export const funciones = () => {
     setWinner(null);
     setGameOver(false);
     try {
-      localStorage.removeItem('tableroActual');
+      sessionStorage.removeItem('tableroActual');
     } catch (error) {
       console.error(error);
     }
@@ -151,8 +141,7 @@ export const funciones = () => {
   };
   // Función para manejar el click en las celdas.
   const handleClick = (columna) => {
-    if (winner || gameOver) return;
-    
+    if (winner || gameOver) return; 
     // Copia profunda del tablero, se copia la referencia a las celdas, no a las filas.
     // 'const tableroCopia = [...tablero]'.
     const tableroCopia = tablero.map((fila) => [...fila]);
@@ -173,7 +162,7 @@ export const funciones = () => {
         } else {
           setJugadorActual(jugadorActual === jugadorUnoName ? jugadorDosName : jugadorUnoName);
           try {
-            localStorage.setItem('tableroActual' ,JSON.stringify(tableroCopia));
+            sessionStorage.setItem('tableroActual' ,JSON.stringify(tableroCopia));
           } catch (error) {
             console.log(error);
           }
@@ -320,7 +309,9 @@ export const funciones = () => {
           title: styles.alerta_title,
         },
       })
-      setTimeout(() => {      
+      setTimeout(() => {    
+        setTableroGanador(tablero);
+        sessionStorage.setItem('tableroGanador' ,JSON.stringify(tablero));
         resetearJuego();
       }, 1500);
       // Aumento el contador de victorias del jugador que gana la ronda.

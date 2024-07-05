@@ -106,7 +106,7 @@
     font-size: 1.4rem;
 }
 
-.controles_container button {
+.btn_control {
     background: rgb(0, 56, 91);
     background: linear-gradient(0deg, rgba(0, 56, 91, 1) 0%, rgba(0, 127, 153, 1) 100%);
     border: 2px solid rgb(255, 255, 255);
@@ -184,6 +184,7 @@
     font-size: 1.2rem;
     transition: transform .2s ease;
     z-index: 2;
+    cursor: pointer;
 }
 
 .btn_volver:hover{
@@ -211,3 +212,20 @@
         height: 75px;
     }
   }
+
+  .modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.861);
+  }
+
+  .btn_closeModal{
+    color: red;
+}

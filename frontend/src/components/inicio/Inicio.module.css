@@ -6,14 +6,14 @@
     position: relative;
 }
 
-.svg{
+.svg {
     position: absolute;
     z-index: 1;
     bottom: 0;
     left: 0;
 }
 
-.container_info{
+.container_info {
     padding: 2rem 0 5rem 0;
     border-bottom: 1px wave white;
 }
@@ -118,7 +118,6 @@
     font-size: 1rem;
     margin-top: .5rem;
     z-index: 2;
-
 }
 
 .btn_jugar {
@@ -130,15 +129,13 @@
     border-radius: .5rem;
     cursor: pointer;
     transition: transform .2s ease, opacity .2s ease;
-    /* background: rgb(0, 56, 91);
-    background: linear-gradient(0deg, rgba(0, 56, 91, 1) 0%, rgba(0, 127, 153, 1) 100%); */
     z-index: 2;
     opacity: 1;
     position: relative;
     background-color: black;
 }
 
-.btn_active{
+.btn_active {
     position: relative;
     overflow: hidden;
     border: 2px solid white;
@@ -161,16 +158,15 @@
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
         transform: translate(-50%, -50%) rotate(-360deg);
     }
 }
 
-.btn_jugar span{
+.btn_jugar span {
     z-index: 999;
 }
-
-/* Hacer que cuando el botón esté activo, se haga la animación del borde de colores en movimiento, y cuando esté disabled pare */
 
 .btn_disabled {
     border: 1px solid rgba(255, 255, 255, 0.577);

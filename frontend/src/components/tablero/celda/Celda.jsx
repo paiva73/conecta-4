@@ -12,6 +12,7 @@ export const Celda = ({ valor, columna, fila, handleClick, handleEnterHover}) =>
     jugadorUnoName,
     colorSeleccionadoUno,
     colorSeleccionadoDos,
+    isModalOpen,
     } = useContext(Context);
   // Verifico.
   // Que la fila actual sea la fila que tiene el hover.
@@ -24,7 +25,7 @@ export const Celda = ({ valor, columna, fila, handleClick, handleEnterHover}) =>
       onClick={() => handleClick(columna)}
       onMouseEnter={() => {handleEnterHover(columna)}}
     >
-      {isHovered && (valor === null) ? (
+      {isHovered && !isModalOpen &&  (valor === null) ? (
         <Ficha color={jugadorActual === jugadorUnoName ? `${colorSeleccionadoUno}_hover` : `${colorSeleccionadoDos}_hover`}/>
       ) : valor === 1 ? (
         <Ficha color={colorSeleccionadoUno} valor={valor} />

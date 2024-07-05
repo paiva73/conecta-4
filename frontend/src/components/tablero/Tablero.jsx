@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Tablero.module.css';
 import { Celda } from './celda/Celda';
 import Context from '../../context/Context';
 import { funciones } from './funciones';
 import { NavLink } from 'react-router-dom';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
-
+import { TableroGanador } from './tablero-ganador/TableroGanador';
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export const Tablero = () => {
   const {
@@ -19,8 +20,12 @@ export const Tablero = () => {
     setJugadorDosName,
     setColorSeleccionadoUno,
     setColorSeleccionadoDos,
+    isModalOpen,
+    setIsModalOpen,
+    tableroGanador,
+    setTableroGanador,
   } = useContext(Context);
-    
+
   const {
     resetearContador,
     resetearJuego,
@@ -30,7 +35,7 @@ export const Tablero = () => {
 
   return (
     <div className={styles.game_container}>
-      <img src="/wave2.svg" alt="" className={styles.svg}/>
+      <img src="/wave2.svg" alt="" className={styles.svg} />
       <div className={styles.controles_container}>
         <h1 className={styles.titulo}>Juega {jugadorActual}</h1>
         <h2 className={styles.rondas}>Rondas ganadas</h2>
@@ -59,18 +64,41 @@ export const Tablero = () => {
       </div>
 
       <div className={styles.controles_container}>
-        <button onClick={resetearContador}>Resetear victorias</button>
-        <button onClick={resetearJuego}>Resetear juego</button>
+        <button className={styles.btn_control} onClick={resetearContador}>Resetear victorias</button>
+        <button className={styles.btn_control} onClick={resetearJuego}>Resetear juego</button>
+        <button className={styles.btn_control} onClick={() => {
+          if (tableroGanador) {
+            setIsModalOpen(true);
+          } else {
+            return null;
+          }
+        }}>Último tablero ganador</button>
+        <TableroGanador isOpen={isModalOpen} />
       </div>
+      {isModalOpen 
+      ?
+      <button onClick={() => setIsModalOpen(false)} className={`${styles.btn_volver} ${styles.btn_closeModal}`}>
+        <IoMdCloseCircleOutline size={48}/>
+        Cerrar tablero
+      </button>
+      :
       <NavLink to={'/'} className={styles.btn_volver} onClick={() => {
-        resetearJuego();
-        resetearContador();
-        setJugadorUnoName('');
-        setJugadorDosName('');
-        setColorSeleccionadoUno('');
-        setColorSeleccionadoDos('');
-        localStorage.clear();
-      }}><IoArrowBackCircleSharp size={'48px'}/> Volver al inicio</NavLink>
+        if (isModalOpen) {
+          setIsModalOpen(false);
+        } else {
+          resetearJuego();
+          resetearContador();
+          setJugadorUnoName('');
+          setJugadorDosName('');
+          setColorSeleccionadoUno('');
+          setColorSeleccionadoDos('');
+          setTableroGanador(null);
+          sessionStorage.clear();
+        }
+      }}><IoArrowBackCircleSharp size={'48px'} /> 
+      Volver al inicio
+      </NavLink>
+      }
     </div>
   )
 }
