@@ -35,7 +35,7 @@ export const Inicio = () => {
         <div className={styles.container_jugadores}>
 
           <div className={styles.jugador}>
-            <h3>Jugador uno</h3>
+            <h3 className={styles.jugador_title}>Jugador uno</h3>
             <input
               type="text"
               placeholder="Ingresa nombre"

@@ -71,3 +71,16 @@
 .purple_hover{
     background-color: rgba(128, 0, 128, 0.450);
 }
+
+
+@media (width > 1440px) {
+    .ficha {
+        width: 95px;
+        height: 95px;
+    }
+
+    .ficha::before {
+        width: 75px;
+        height: 75px;
+    }
+}
