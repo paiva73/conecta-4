@@ -29,7 +29,7 @@ export const Inicio = () => {
 
   return (
     <div className={styles.container_inicio}>
-      <img src="/wave3.svg" alt="" className={styles.svg}/>
+      <img src="/wave3.svg" alt="" className={styles.svg} />
       <h1 className={styles.title}>Conecta cuatro</h1>
       <div className={styles.container_info}>
         <div className={styles.container_jugadores}>
@@ -81,11 +81,15 @@ export const Inicio = () => {
 
         <div className={styles.div_center}>
           <NavLink
-            className={`${styles.btn_jugar} ${!isFormValid || !isNameValid || errorColor ? styles.btn_disabled : ''}`}
+            className={`${styles.btn_jugar} ${!isFormValid || !isNameValid || errorColor
+              ?
+              styles.btn_disabled
+              :
+              styles.btn_active}`}
             onClick={handlePlayClick}
             to={'/tablero'}
           >
-            ¡A jugar!
+           <span>¡A jugar!</span>
           </NavLink>
         </div>
 

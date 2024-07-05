@@ -33,6 +33,18 @@ export const funciones = () => {
     setFormError,
     setNameError,
   } = useContext(Context);
+  // Borro los datos del storage cuando cierro la ventana.
+  useEffect(() => {
+    const handleUnload = () => {
+      localStorage.clear();
+    };
+
+    window.addEventListener('unload', handleUnload);
+
+    return () => {
+      window.removeEventListener('unload', handleUnload);
+    };
+  }, []);
   // Función para manejar el color seleccionado uno y el error.
   const handleColorUno = (color) => {
     if (colorSeleccionadoDos === color) {
