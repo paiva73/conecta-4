@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Context from "../../context/Context";
 
 const homeFunctions = () => {
@@ -37,19 +37,24 @@ const homeFunctions = () => {
     setErrorColor("");
   };
   // Ver que todos los campos estén completados y que los nombres sean distintos.
-  const isFormValid =
-    selectedColorOne && selectedColorTwo && namePlayerOne && namePlayerTwo;
+  const isFormValid = 
+    !!(selectedColorOne && selectedColorTwo && namePlayerOne && namePlayerTwo);
+
   const isNameValid =
     !namePlayerOne || !namePlayerTwo || namePlayerOne !== namePlayerTwo;
   // Manejar los errores de nombres y campos.
   const handlePlayClick = (e) => {
     if (errorColor || !isNameValid) {
       e.preventDefault();
+      return null;
     }
     if (!isFormValid) {
+      console.log(Boolean(isFormValid));
       e.preventDefault();
       setFormError("¡Debes completar todos los campos!");
+      return null;
     } else {
+      console.log(Boolean(isFormValid));
       try {
         sessionStorage.setItem("namePlayerOne", namePlayerOne);
         sessionStorage.setItem("namePlayerTwo", namePlayerTwo);
@@ -87,6 +92,8 @@ const homeFunctions = () => {
     handleColorOne,
     handleColorTwo,
     handlePlayClick,
+    isFormValid,
+    isNameValid
   };
 };
 

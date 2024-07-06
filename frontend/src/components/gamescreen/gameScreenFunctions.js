@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import Context from '../../context/Context';
 import Swal from 'sweetalert2';
 import styles from './GameScreen.module.css';
+import boardFunctions from './board/boardFunctions';
 
 export const gameScreenFunctions = () => {
   // Traigo todas las variables a utilizar desde el context.
@@ -19,6 +20,10 @@ export const gameScreenFunctions = () => {
     setVictoriesPlayerTwo,
     setWinningBoard
   } = useContext(Context);
+
+  const {
+    resetBoard
+  } = boardFunctions();
   // useEffect para actualizar la cantidad de victorias en el storage
   useEffect(() => {
     try {

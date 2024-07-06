@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import styles from '../App.module.css';
 import { Route, Routes } from 'react-router-dom';
 import { GameScreen } from './gamescreen/GameScreen';
-import { Inicio } from './inicio/Inicio';
-import { RutaProtegida } from './RutaProtegida';
+import { ProtectedRoute } from './ProtectedRoute';
 import Context from '../context/Context';
+import { Home } from './home/Home';
 
 export const Main = () => {
   const {
@@ -16,18 +16,18 @@ export const Main = () => {
     const colorOne = sessionStorage.getItem('selectedColorOne');
     const colorTwo = sessionStorage.getItem('selectedColorTwo');
 
-  const esPermitida = nameUno && nameDos && colorOne && colorTwo;
+  const isAllowed = nameUno && nameDos && colorOne && colorTwo;
 
   return (
     <div className={`${styles.container} ${isModalOpen ? styles.modal_open : ''}`}>
       <Routes>
-        <Route path='/' element={<Inicio />} />
+        <Route path='/' element={<Home />} />
         <Route 
           path='/gamescreen'
           element={
-            <RutaProtegida esPermitida={esPermitida}>
+            <ProtectedRoute isAllowed={isAllowed}>
               <GameScreen />
-            </RutaProtegida>
+            </ProtectedRoute>
           } 
         />
       </Routes>
