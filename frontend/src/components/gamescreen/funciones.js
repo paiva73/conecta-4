@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import Context from '../../context/Context';
 import Swal from 'sweetalert2';
-import styles from './Tablero.module.css';
+import styles from './GameScreen.module.css';
 
 export const funciones = () => {
   // Traigo todas las variables a utilizar desde el context.

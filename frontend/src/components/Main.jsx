@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from '../App.module.css';
 import { Route, Routes } from 'react-router-dom';
-import { Tablero } from './tablero/Tablero';
+import { GameScreen } from './gamescreen/GameScreen';
 import { Inicio } from './inicio/Inicio';
 import { RutaProtegida } from './RutaProtegida';
 import Context from '../context/Context';
@@ -23,10 +23,10 @@ export const Main = () => {
       <Routes>
         <Route path='/' element={<Inicio />} />
         <Route 
-          path='/tablero'
+          path='/gamescreen'
           element={
             <RutaProtegida esPermitida={esPermitida}>
-              <Tablero />
+              <GameScreen />
             </RutaProtegida>
           } 
         />

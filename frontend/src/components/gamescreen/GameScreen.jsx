@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './Tablero.module.css';
+import styles from './GameScreen.module.css';
 import { Celda } from './celda/Celda';
 import Context from '../../context/Context';
 import { funciones } from './funciones';
@@ -8,7 +8,7 @@ import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { TableroGanador } from './tablero-ganador/TableroGanador';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
-export const Tablero = () => {
+export const GameScreen = () => {
   const {
     tablero,
     jugadorActual,

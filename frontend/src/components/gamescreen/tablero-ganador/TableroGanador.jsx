@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styles from '../Tablero.module.css'
+import styles from '../GameScreen.module.css';
 import Context from '../../../context/Context';
 import { Celda } from '../celda/Celda';
 
