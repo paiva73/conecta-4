@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './GameScreen.module.css';
-import { Celda } from './celda/Celda';
 import Context from '../../context/Context';
 import { funciones } from './funciones';
 import { NavLink } from 'react-router-dom';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { TableroGanador } from './tablero-ganador/TableroGanador';
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import Board from './board/Board';
 
 export const GameScreen = () => {
   const {
-    tablero,
     jugadorActual,
     victoriasJugadorUno,
     victoriasJugadorDos,
@@ -29,8 +28,6 @@ export const GameScreen = () => {
   const {
     resetearContador,
     resetearJuego,
-    handleClick,
-    handleEnterHover,
   } = funciones();
 
   return (
@@ -42,25 +39,9 @@ export const GameScreen = () => {
         <h4 >{jugadorUnoName} {victoriasJugadorUno}</h4>
         <h4 >{jugadorDosName} {victoriasJugadorDos}</h4>
       </div>
+      
       <div className={styles.tablero_container}>
-        <div className={styles.tablero}>
-          {tablero.map((fila, indexFila) => {
-            return (
-              <div className={styles.columna} key={indexFila}>
-                {fila.map((valor, indexColumna) => {
-                  return <Celda
-                    handleClick={handleClick}
-                    columna={indexColumna}
-                    fila={indexFila}
-                    key={indexColumna}
-                    valor={valor}
-                    handleEnterHover={handleEnterHover}
-                  />
-                })}
-              </div>
-            )
-          })}
-        </div>
+        <Board />
       </div>
 
       <div className={styles.controles_container}>
