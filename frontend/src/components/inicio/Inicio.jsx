@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import styles from './Inicio.module.css';
-import Context from '../../context/Context';
-import { NavLink } from 'react-router-dom';
-import { funciones } from '../tablero/funciones';
+import React, { useContext } from "react";
+import styles from "./Inicio.module.css";
+import Context from "../../context/Context";
+import { NavLink } from "react-router-dom";
+import { funciones } from "../tablero/funciones";
+import Jugador from "./jugador/Jugador";
 
 export const Inicio = () => {
-
   const {
     handleColorUno,
     handleColorDos,
@@ -32,67 +32,54 @@ export const Inicio = () => {
       <img src="/wave3.svg" alt="" className={styles.svg} />
       <h1 className={styles.title}>Conecta cuatro</h1>
       <div className={styles.container_info}>
+        
         <div className={styles.container_jugadores}>
+          <Jugador
+            numberPlayer={"uno"}
+            name={jugadorUnoName}
+            nameOnChange={setJugadorUnoName}
+            colorOnClick={handleColorUno}
+            selectedColor={colorSeleccionadoUno}
+          />
 
-          <div className={styles.jugador}>
-            <h3 className={styles.jugador_title}>Jugador uno</h3>
-            <input
-              type="text"
-              placeholder="Ingresa nombre"
-              value={jugadorUnoName}
-              onChange={(event) => setJugadorUnoName(event.target.value)}
-            />
-            <div className={styles.container_colors}>
-              {colores.map((color) => (
-                <div
-                  key={color}
-                  className={`${styles.colors} ${colorSeleccionadoUno === color ? styles.selected : ''}`}
-                  onClick={() => handleColorUno(color)}
-                  style={{ backgroundColor: color }}
-                ></div>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.jugador}>
-            <h3>Jugador dos</h3>
-            <input
-              type="text"
-              placeholder="Ingresa nombre"
-              value={jugadorDosName}
-              onChange={(event) => setJugadorDosName(event.target.value)}
-            />
-            <div className={styles.container_colors}>
-              {colores.map((color) => (
-                <div
-                  key={color}
-                  className={`${styles.colors} ${colorSeleccionadoDos === color ? styles.selected : ''}`}
-                  onClick={() => handleColorDos(color)}
-                  style={{ backgroundColor: color }}
-                ></div>
-              ))}
-            </div>
-          </div>
+          <Jugador
+            numberPlayer={"dos"}
+            name={jugadorDosName}
+            nameOnChange={setJugadorDosName}
+            colorOnClick={handleColorDos}
+            selectedColor={colorSeleccionadoDos}
+          />
         </div>
 
-        {errorColor && <div className={styles.div_center}><p className={styles.error}>{errorColor}</p></div>}
-        {formError && <div className={styles.div_center}><p className={styles.error}>{formError}</p></div>}
-        {nameError && <div className={styles.div_center}><p className={styles.error}>{nameError}</p></div>}
+        {errorColor && (
+          <div className={styles.div_center}>
+            <p className={styles.error}>{errorColor}</p>
+          </div>
+        )}
+        {formError && (
+          <div className={styles.div_center}>
+            <p className={styles.error}>{formError}</p>
+          </div>
+        )}
+        {nameError && (
+          <div className={styles.div_center}>
+            <p className={styles.error}>{nameError}</p>
+          </div>
+        )}
 
         <div className={styles.div_center}>
           <NavLink
-            className={`${styles.btn_jugar} ${!isFormValid || !isNameValid || errorColor
-              ?
-              styles.btn_disabled
-              :
-              styles.btn_active}`}
+            className={`${styles.btn_jugar} ${
+              !isFormValid || !isNameValid || errorColor
+                ? styles.btn_disabled
+                : styles.btn_active
+            }`}
             onClick={handlePlayClick}
-            to={'/tablero'}
+            to={"/tablero"}
           >
-           <span>¡A jugar!</span>
+            <span>¡A jugar!</span>
           </NavLink>
         </div>
-
       </div>
     </div>
   );
