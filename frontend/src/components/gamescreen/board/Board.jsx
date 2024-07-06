@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Cell } from "../cell/Cell";
-import { funciones } from "../funciones";
 import Context from "../../../context/Context";
 import styles from '../GameScreen.module.css';
+import boardFunctions from "./boardFunctions";
 
 const Board = () => {
   const { board } = useContext(Context);
 
-  const { handleClick, handleEnterHover } = funciones();
+  const { handleClick, handleEnterHover } = boardFunctions();
 
   return (
     <div className={styles.tablero}>

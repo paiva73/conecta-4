@@ -2,17 +2,16 @@ import React, { useContext } from "react";
 import styles from "./Inicio.module.css";
 import Context from "../../context/Context";
 import { NavLink } from "react-router-dom";
-import { funciones } from "../gamescreen/funciones";
 import Player from "./player/Player";
+import homeFunctions from "./homeFunctions";
 
 export const Inicio = () => {
+  
   const {
     handleColorOne,
     handleColorTwo,
     handlePlayClick,
-    isFormValid,
-    isNameValid,
-  } = funciones();
+  } = homeFunctions();
 
   const {
     selectedColorOne,

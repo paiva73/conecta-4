@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './GameScreen.module.css';
 import Context from '../../context/Context';
-import { funciones } from './funciones';
+import { gameScreenFunctions } from './gameScreenFunctions';
 import { NavLink } from 'react-router-dom';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { WinningBoard } from './winningboard/WinningBoard';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Board from './board/Board';
+import boardFunctions from './board/boardFunctions';
 
 export const GameScreen = () => {
   const {
@@ -27,8 +28,11 @@ export const GameScreen = () => {
 
   const {
     resetCounter,
+  } = gameScreenFunctions();
+
+  const {
     resetBoard,
-  } = funciones();
+  } = boardFunctions();
 
   return (
     <div className={styles.game_container}>
