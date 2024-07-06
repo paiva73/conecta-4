@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import styles from '../GameScreen.module.css';
-import { Ficha } from '../ficha/Ficha';
+import { Piece } from '../piece/Piece';
 import Context from '../../../context/Context';
 
-export const Celda = ({ valueCell, column, row, handleClick, handleEnterHover}) => {
+export const Cell = ({ valueCell, column, row, handleClick, handleEnterHover}) => {
 
   const { 
     isHover,
@@ -26,11 +26,11 @@ export const Celda = ({ valueCell, column, row, handleClick, handleEnterHover}) 
       onMouseEnter={() => {handleEnterHover(column)}}
     >
       {isHovered && !isModalOpen &&  (valueCell === null) ? (
-        <Ficha color={currentPlayer === namePlayerOne ? `${selectedColorOne}_hover` : `${selectedColorTwo}_hover`}/>
+        <Piece color={currentPlayer === namePlayerOne ? `${selectedColorOne}_hover` : `${selectedColorTwo}_hover`}/>
       ) : valueCell === 1 ? (
-        <Ficha color={selectedColorOne} valueCell={valueCell} />
+        <Piece color={selectedColorOne} valueCell={valueCell} />
       ) : valueCell === 2 ? (
-        <Ficha color={selectedColorTwo} valueCell={valueCell} />
+        <Piece color={selectedColorTwo} valueCell={valueCell} />
       ) : (
         valueCell
       )}

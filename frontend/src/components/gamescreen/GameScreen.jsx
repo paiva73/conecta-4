@@ -4,7 +4,7 @@ import Context from '../../context/Context';
 import { funciones } from './funciones';
 import { NavLink } from 'react-router-dom';
 import { IoArrowBackCircleSharp } from "react-icons/io5";
-import { TableroGanador } from './tablero-ganador/TableroGanador';
+import { WinningBoard } from './winningboard/WinningBoard';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Board from './board/Board';
 
@@ -54,7 +54,7 @@ export const GameScreen = () => {
             return null;
           }
         }}>Último tablero ganador</button>
-        <TableroGanador isOpen={isModalOpen} />
+        <WinningBoard isOpen={isModalOpen} />
       </div>
       {isModalOpen 
       ?

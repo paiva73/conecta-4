@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styles from '../Inicio.module.css';
 import Context from '../../../context/Context';
 
-const JugadorUno = ({numberPlayer, name, nameOnChange, colorOnClick, selectedColor}) => {
+const Player = ({numberPlayer, name, nameOnChange, colorOnClick, selectedColor}) => {
 
     const {
         colors,
@@ -31,7 +31,7 @@ const JugadorUno = ({numberPlayer, name, nameOnChange, colorOnClick, selectedCol
   )
 }
 
-export default JugadorUno
+export default Player;
 
 
 

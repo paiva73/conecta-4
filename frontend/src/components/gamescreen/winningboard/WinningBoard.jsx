@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import styles from '../GameScreen.module.css';
 import Context from '../../../context/Context';
-import { Celda } from '../celda/Celda';
+import { Cell } from '../cell/Cell';
 
-export const TableroGanador = ({ isOpen }) => {
+export const WinningBoard = ({ isOpen }) => {
     const {
         winningBoard
     } = useContext(Context);
@@ -19,7 +19,7 @@ export const TableroGanador = ({ isOpen }) => {
                             return (
                                 <div className={styles.columna} key={indexRow}>
                                     {row.map((valueCell, indexColumn) => {
-                                        return <Celda
+                                        return <Cell
                                             column={indexColumn}
                                             row={indexRow}
                                             key={indexColumn}

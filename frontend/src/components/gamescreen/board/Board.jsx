@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Celda } from "../celda/Celda";
+import { Cell } from "../cell/Cell";
 import { funciones } from "../funciones";
 import Context from "../../../context/Context";
 import styles from '../GameScreen.module.css';
@@ -16,7 +16,7 @@ const Board = () => {
           <div className={styles.columna} key={indexRow}>
             {row.map((valueCell, indexColumn) => {
               return (
-                <Celda
+                <Cell
                   handleClick={handleClick}
                   column={indexColumn}
                   row={indexRow}

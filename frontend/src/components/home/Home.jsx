@@ -3,7 +3,7 @@ import styles from "./Inicio.module.css";
 import Context from "../../context/Context";
 import { NavLink } from "react-router-dom";
 import { funciones } from "../gamescreen/funciones";
-import Jugador from "./jugador/Jugador";
+import Player from "./player/Player";
 
 export const Inicio = () => {
   const {
@@ -31,9 +31,8 @@ export const Inicio = () => {
       <img src="/wave3.svg" alt="" className={styles.svg} />
       <h1 className={styles.title}>Conecta cuatro</h1>
       <div className={styles.container_info}>
-
         <div className={styles.container_jugadores}>
-          <Jugador
+          <Player
             numberPlayer={"uno"}
             name={namePlayerOne}
             nameOnChange={setNamePlayerOne}
@@ -41,7 +40,7 @@ export const Inicio = () => {
             selectedColor={selectedColorOne}
           />
 
-          <Jugador
+          <Player
             numberPlayer={"dos"}
             name={namePlayerTwo}
             nameOnChange={setNamePlayerTwo}
