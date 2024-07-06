@@ -49,12 +49,10 @@ const homeFunctions = () => {
       return null;
     }
     if (!isFormValid) {
-      console.log(Boolean(isFormValid));
       e.preventDefault();
       setFormError("¡Debes completar todos los campos!");
       return null;
     } else {
-      console.log(Boolean(isFormValid));
       try {
         sessionStorage.setItem("namePlayerOne", namePlayerOne);
         sessionStorage.setItem("namePlayerTwo", namePlayerTwo);

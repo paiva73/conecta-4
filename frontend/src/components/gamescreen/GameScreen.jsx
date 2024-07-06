@@ -36,19 +36,19 @@ export const GameScreen = () => {
 
   return (
     <div className={styles.game_container}>
-      <img src="/wave2.svg" alt="" className={styles.svg} />
-      <div className={styles.controles_container}>
-        <h1 className={styles.titulo}>Juega {currentPlayer}</h1>
-        <h2 className={styles.rondas}>Rondas ganadas</h2>
+      <img src="/wave2.svg" alt="" className={styles.gameScreen_svg} />
+      <div className={styles.controls_container}>
+        <h1 className={styles.currentPlayer}>Juega {currentPlayer}</h1>
+        <h2 className={styles.rounds}>Rondas ganadas</h2>
         <h4 >{namePlayerOne} {victoriesPlayerOne}</h4>
         <h4 >{namePlayerTwo} {victoriesPlayerTwo}</h4>
       </div>
       
-      <div className={styles.tablero_container}>
+      <div className={styles.board_container}>
         <Board />
       </div>
 
-      <div className={styles.controles_container}>
+      <div className={styles.controls_container}>
         <button className={styles.btn_control} onClick={resetCounter}>Resetear victorias</button>
         <button className={styles.btn_control} onClick={resetBoard}>Resetear tablero</button>
         <button className={styles.btn_control} onClick={() => {
@@ -62,12 +62,12 @@ export const GameScreen = () => {
       </div>
       {isModalOpen 
       ?
-      <button onClick={() => setIsModalOpen(false)} className={`${styles.btn_volver} ${styles.btn_closeModal}`}>
+      <button onClick={() => setIsModalOpen(false)} className={`${styles.btn_back} ${styles.btn_closeModal}`}>
         <IoMdCloseCircleOutline size={48}/>
         Cerrar tablero
       </button>
       :
-      <NavLink to={'/'} className={styles.btn_volver} onClick={() => {
+      <NavLink to={'/'} className={styles.btn_back} onClick={() => {
         if (isModalOpen) {
           setIsModalOpen(false);
         } else {

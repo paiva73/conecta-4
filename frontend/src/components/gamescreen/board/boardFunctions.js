@@ -53,7 +53,7 @@ const boardFunctions = () => {
   const handleClick = (column) => {
     if (winner || gameOver) return;
     // Copia profunda del tablero, se copia la referencia a las celdas, no a las filas.
-    // 'const copyBoard = [...tablero]'.
+    // 'const copyBoard = [...board]'.
     const copyBoard = board.map((row) => [...row]);
     // Recorro la copia del tablero y cambio el valor de la última celda disponible por 1 o 2, dependiendo del jugador actual.
     for (let i = copyBoard.length - 1; i >= 0; i--) {
@@ -185,7 +185,7 @@ const boardFunctions = () => {
         timerProgressBar: true,
         showConfirmButton: false,
         customClass: {
-          popup: `${styles.alerta_container} ${styles.alerta_empate}`,
+          popup: `${styles.alert_container} ${styles.alertTie_bg}`,
           title: styles.alerta_title,
         },
       });

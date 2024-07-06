@@ -21,7 +21,7 @@ export const Cell = ({ valueCell, column, row, handleClick, handleEnterHover}) =
 
   return (
     <div
-      className={`${styles.celda}`}
+      className={`${styles.cell}`}
       onClick={() => handleClick(column)}
       onMouseEnter={() => {handleEnterHover(column)}}
     >

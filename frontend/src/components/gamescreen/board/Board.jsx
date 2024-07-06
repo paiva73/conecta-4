@@ -10,10 +10,10 @@ const Board = () => {
   const { handleClick, handleEnterHover } = boardFunctions();
 
   return (
-    <div className={styles.tablero}>
+    <div className={styles.board}>
       {board.map((row, indexRow) => {
         return (
-          <div className={styles.columna} key={indexRow}>
+          <div className={styles.column} key={indexRow}>
             {row.map((valueCell, indexColumn) => {
               return (
                 <Cell

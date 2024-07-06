@@ -28,11 +28,11 @@ export const Home = () => {
   } = useContext(Context);
 
   return (
-    <div className={styles.container_inicio}>
-      <img src="/wave3.svg" alt="" className={styles.svg} />
+    <div className={styles.home_container}>
+      <img src="/wave3.svg" alt="" className={styles.home_svg} />
       <h1 className={styles.title}>Conecta cuatro</h1>
       <div className={styles.container_info}>
-        <div className={styles.container_jugadores}>
+        <div className={styles.players_container}>
           <Player
             numberPlayer={"uno"}
             name={namePlayerOne}
@@ -68,7 +68,7 @@ export const Home = () => {
 
         <div className={styles.div_center}>
           <NavLink
-            className={`${styles.btn_jugar} ${
+            className={`${styles.btn_playGame} ${
               !isFormValid || !isNameValid || errorColor
                 ? styles.btn_disabled
                 : styles.btn_active

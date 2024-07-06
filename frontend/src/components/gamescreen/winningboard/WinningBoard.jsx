@@ -13,11 +13,11 @@ export const WinningBoard = ({ isOpen }) => {
     } else {
         return (
             <div className={styles.modal}>
-                <div className={styles.tablero_container}>
-                    <div className={styles.tablero}>
+                <div className={styles.board_container}>
+                    <div className={styles.board}>
                         {winningBoard.map((row, indexRow) => {
                             return (
-                                <div className={styles.columna} key={indexRow}>
+                                <div className={styles.column} key={indexRow}>
                                     {row.map((valueCell, indexColumn) => {
                                         return <Cell
                                             column={indexColumn}

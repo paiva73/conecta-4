@@ -9,8 +9,8 @@ const Player = ({numberPlayer, name, nameOnChange, colorOnClick, selectedColor})
       } = useContext(Context);
 
   return (
-    <div className={styles.jugador}>
-            <h3 className={styles.jugador_title}>{`Jugador ${numberPlayer}`}</h3>
+    <div className={styles.player}>
+            <h3 className={styles.player_title}>{`Jugador ${numberPlayer}`}</h3>
             <input
               type="text"
               placeholder="Ingresa nombre"

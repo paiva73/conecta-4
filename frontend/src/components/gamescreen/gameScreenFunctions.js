@@ -50,7 +50,7 @@ export const gameScreenFunctions = () => {
         timerProgressBar: true,
         showConfirmButton: false,
         customClass: {
-          popup: `${styles.alerta_container} ${styles[`alerta_container_${colorClase}`]}`,
+          popup: `${styles.alert_container} ${styles[`alert_container_${colorClase}`]}`,
           title: styles.alerta_title,
         },
       })
