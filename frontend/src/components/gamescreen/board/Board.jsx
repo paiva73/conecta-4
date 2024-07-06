@@ -5,23 +5,23 @@ import Context from "../../../context/Context";
 import styles from '../GameScreen.module.css';
 
 const Board = () => {
-  const { tablero } = useContext(Context);
+  const { board } = useContext(Context);
 
   const { handleClick, handleEnterHover } = funciones();
 
   return (
     <div className={styles.tablero}>
-      {tablero.map((fila, indexFila) => {
+      {board.map((row, indexRow) => {
         return (
-          <div className={styles.columna} key={indexFila}>
-            {fila.map((valor, indexColumna) => {
+          <div className={styles.columna} key={indexRow}>
+            {row.map((valueCell, indexColumn) => {
               return (
                 <Celda
                   handleClick={handleClick}
-                  columna={indexColumna}
-                  fila={indexFila}
-                  key={indexColumna}
-                  valor={valor}
+                  column={indexColumn}
+                  row={indexRow}
+                  key={indexColumn}
+                  valueCell={valueCell}
                   handleEnterHover={handleEnterHover}
                 />
               );

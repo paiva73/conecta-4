@@ -3,36 +3,36 @@ import styles from '../GameScreen.module.css';
 import { Ficha } from '../ficha/Ficha';
 import Context from '../../../context/Context';
 
-export const Celda = ({ valor, columna, fila, handleClick, handleEnterHover}) => {
+export const Celda = ({ valueCell, column, row, handleClick, handleEnterHover}) => {
 
   const { 
     isHover,
     hoverColumn, 
-    jugadorActual,
-    jugadorUnoName,
-    colorSeleccionadoUno,
-    colorSeleccionadoDos,
+    currentPlayer,
+    namePlayerOne,
+    selectedColorOne,
+    selectedColorTwo,
     isModalOpen,
     } = useContext(Context);
-  // Verifico.
+  // Verifico:
   // Que la fila actual sea la fila que tiene el hover.
   // Que la columna actual sea la columna que tiene el hover.
-  const isHovered = isHover === fila && hoverColumn === columna;
+  const isHovered = isHover === row && hoverColumn === column;
 
   return (
     <div
-    className={`${styles.celda}`}
-      onClick={() => handleClick(columna)}
-      onMouseEnter={() => {handleEnterHover(columna)}}
+      className={`${styles.celda}`}
+      onClick={() => handleClick(column)}
+      onMouseEnter={() => {handleEnterHover(column)}}
     >
-      {isHovered && !isModalOpen &&  (valor === null) ? (
-        <Ficha color={jugadorActual === jugadorUnoName ? `${colorSeleccionadoUno}_hover` : `${colorSeleccionadoDos}_hover`}/>
-      ) : valor === 1 ? (
-        <Ficha color={colorSeleccionadoUno} valor={valor} />
-      ) : valor === 2 ? (
-        <Ficha color={colorSeleccionadoDos} valor={valor} />
+      {isHovered && !isModalOpen &&  (valueCell === null) ? (
+        <Ficha color={currentPlayer === namePlayerOne ? `${selectedColorOne}_hover` : `${selectedColorTwo}_hover`}/>
+      ) : valueCell === 1 ? (
+        <Ficha color={selectedColorOne} valueCell={valueCell} />
+      ) : valueCell === 2 ? (
+        <Ficha color={selectedColorTwo} valueCell={valueCell} />
       ) : (
-        valor
+        valueCell
       )}
     </div>
   );

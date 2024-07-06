@@ -7,20 +7,20 @@ import Jugador from "./jugador/Jugador";
 
 export const Inicio = () => {
   const {
-    handleColorUno,
-    handleColorDos,
+    handleColorOne,
+    handleColorTwo,
     handlePlayClick,
     isFormValid,
     isNameValid,
   } = funciones();
 
   const {
-    colorSeleccionadoUno,
-    colorSeleccionadoDos,
-    jugadorUnoName,
-    setJugadorUnoName,
-    jugadorDosName,
-    setJugadorDosName,
+    selectedColorOne,
+    selectedColorTwo,
+    namePlayerOne,
+    setNamePlayerOne,
+    namePlayerTwo,
+    setNamePlayerTwo,
     errorColor,
     formError,
     nameError,
@@ -35,18 +35,18 @@ export const Inicio = () => {
         <div className={styles.container_jugadores}>
           <Jugador
             numberPlayer={"uno"}
-            name={jugadorUnoName}
-            nameOnChange={setJugadorUnoName}
-            colorOnClick={handleColorUno}
-            selectedColor={colorSeleccionadoUno}
+            name={namePlayerOne}
+            nameOnChange={setNamePlayerOne}
+            colorOnClick={handleColorOne}
+            selectedColor={selectedColorOne}
           />
 
           <Jugador
             numberPlayer={"dos"}
-            name={jugadorDosName}
-            nameOnChange={setJugadorDosName}
-            colorOnClick={handleColorDos}
-            selectedColor={colorSeleccionadoDos}
+            name={namePlayerTwo}
+            nameOnChange={setNamePlayerTwo}
+            colorOnClick={handleColorTwo}
+            selectedColor={selectedColorTwo}
           />
         </div>
 

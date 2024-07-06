@@ -5,7 +5,7 @@ import Context from '../../../context/Context';
 const JugadorUno = ({numberPlayer, name, nameOnChange, colorOnClick, selectedColor}) => {
 
     const {
-        colores,
+        colors,
       } = useContext(Context);
 
   return (
@@ -18,7 +18,7 @@ const JugadorUno = ({numberPlayer, name, nameOnChange, colorOnClick, selectedCol
               onChange={(event) => nameOnChange(event.target.value)}
             />
             <div className={styles.container_colors}>
-              {colores.map((color) => (
+              {colors.map((color) => (
                 <div
                   key={color}
                   className={`${styles.colors} ${selectedColor === color ? styles.selected : ''}`}

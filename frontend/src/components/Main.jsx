@@ -11,12 +11,12 @@ export const Main = () => {
     isModalOpen,
   } = useContext(Context);
   
-    const nameUno = sessionStorage.getItem('nombreUno');
-    const nameDos = sessionStorage.getItem('nombreDos');
-    const colorUno = sessionStorage.getItem('colorUno');
-    const colorDos = sessionStorage.getItem('colorDos');
+    const nameUno = sessionStorage.getItem('namePlayerOne');
+    const nameDos = sessionStorage.getItem('namePlayerTwo');
+    const colorOne = sessionStorage.getItem('selectedColorOne');
+    const colorTwo = sessionStorage.getItem('selectedColorTwo');
 
-  const esPermitida = nameUno && nameDos && colorUno && colorDos;
+  const esPermitida = nameUno && nameDos && colorOne && colorTwo;
 
   return (
     <div className={`${styles.container} ${isModalOpen ? styles.modal_open : ''}`}>

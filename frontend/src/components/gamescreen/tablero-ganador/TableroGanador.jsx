@@ -5,7 +5,7 @@ import { Celda } from '../celda/Celda';
 
 export const TableroGanador = ({ isOpen }) => {
     const {
-        tableroGanador
+        winningBoard
     } = useContext(Context);
 
     if (!isOpen) {
@@ -15,16 +15,16 @@ export const TableroGanador = ({ isOpen }) => {
             <div className={styles.modal}>
                 <div className={styles.tablero_container}>
                     <div className={styles.tablero}>
-                        {tableroGanador.map((fila, indexFila) => {
+                        {winningBoard.map((row, indexRow) => {
                             return (
-                                <div className={styles.columna} key={indexFila}>
-                                    {fila.map((valor, indexColumna) => {
+                                <div className={styles.columna} key={indexRow}>
+                                    {row.map((valueCell, indexColumn) => {
                                         return <Celda
-                                            columna={indexColumna}
-                                            fila={indexFila}
-                                            key={indexColumna}
-                                            valor={valor}
-                                            handleEnterHover={() => { }}
+                                            column={indexColumn}
+                                            row={indexRow}
+                                            key={indexColumn}
+                                            valueCell={valueCell}
+                                            handleEnterHover={() => {}}
                                         />
                                     })}
                                 </div>

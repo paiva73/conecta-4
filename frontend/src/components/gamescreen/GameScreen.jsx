@@ -10,34 +10,34 @@ import Board from './board/Board';
 
 export const GameScreen = () => {
   const {
-    jugadorActual,
-    victoriasJugadorUno,
-    victoriasJugadorDos,
-    jugadorUnoName,
-    setJugadorUnoName,
-    jugadorDosName,
-    setJugadorDosName,
-    setColorSeleccionadoUno,
-    setColorSeleccionadoDos,
+    currentPlayer,
+    victoriesPlayerOne,
+    victoriesPlayerTwo,
+    namePlayerOne,
+    setNamePlayerOne,
+    namePlayerTwo,
+    setNamePlayerTwo,
+    setSelectedColorOne,
+    setSelectedColorTwo,
     isModalOpen,
     setIsModalOpen,
-    tableroGanador,
-    setTableroGanador,
+    winningBoard,
+    setWinningBoard,
   } = useContext(Context);
 
   const {
-    resetearContador,
-    resetearJuego,
+    resetCounter,
+    resetBoard,
   } = funciones();
 
   return (
     <div className={styles.game_container}>
       <img src="/wave2.svg" alt="" className={styles.svg} />
       <div className={styles.controles_container}>
-        <h1 className={styles.titulo}>Juega {jugadorActual}</h1>
+        <h1 className={styles.titulo}>Juega {currentPlayer}</h1>
         <h2 className={styles.rondas}>Rondas ganadas</h2>
-        <h4 >{jugadorUnoName} {victoriasJugadorUno}</h4>
-        <h4 >{jugadorDosName} {victoriasJugadorDos}</h4>
+        <h4 >{namePlayerOne} {victoriesPlayerOne}</h4>
+        <h4 >{namePlayerTwo} {victoriesPlayerTwo}</h4>
       </div>
       
       <div className={styles.tablero_container}>
@@ -45,10 +45,10 @@ export const GameScreen = () => {
       </div>
 
       <div className={styles.controles_container}>
-        <button className={styles.btn_control} onClick={resetearContador}>Resetear victorias</button>
-        <button className={styles.btn_control} onClick={resetearJuego}>Resetear juego</button>
+        <button className={styles.btn_control} onClick={resetCounter}>Resetear victorias</button>
+        <button className={styles.btn_control} onClick={resetBoard}>Resetear tablero</button>
         <button className={styles.btn_control} onClick={() => {
-          if (tableroGanador) {
+          if (winningBoard) {
             setIsModalOpen(true);
           } else {
             return null;
@@ -67,13 +67,13 @@ export const GameScreen = () => {
         if (isModalOpen) {
           setIsModalOpen(false);
         } else {
-          resetearJuego();
-          resetearContador();
-          setJugadorUnoName('');
-          setJugadorDosName('');
-          setColorSeleccionadoUno('');
-          setColorSeleccionadoDos('');
-          setTableroGanador(null);
+          resetBoard();
+          resetCounter();
+          setNamePlayerOne('');
+          setNamePlayerTwo('');
+          setSelectedColorOne('');
+          setSelectedColorTwo('');
+          setWinningBoard(null);
           sessionStorage.clear();
         }
       }}><IoArrowBackCircleSharp size={'48px'} /> 

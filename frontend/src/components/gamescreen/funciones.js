@@ -6,58 +6,57 @@ import styles from './GameScreen.module.css';
 export const funciones = () => {
   // Traigo todas las variables a utilizar desde el context.
   const {
-    tableroInicial,
-    tablero,
-    setTablero,
-    jugadorActual,
-    setJugadorActual,
-    winner,
-    setWinner,
-    gameOver,
-    setGameOver,
-    victoriasJugadorUno,
-    setVictoriasJugadorUno,
-    victoriasJugadorDos,
-    setVictoriasJugadorDos,
-    setIsHover,
-    setHoverColumn,
-    hoverColumn,
-    jugadorUnoName,
-    jugadorDosName,
-    colorSeleccionadoUno,
-    setColorSeleccionadoUno,
-    colorSeleccionadoDos,
-    setColorSeleccionadoDos,
+    namePlayerOne,
+    namePlayerTwo,
+    selectedColorOne,
+    setSelectedColorOne,
+    selectedColorTwo,
+    setSelectedColorTwo,
     errorColor,
     setErrorColor,
     setFormError,
     setNameError,
-    tableroGanador,
-    setTableroGanador
+    initialBoard,
+    board,
+    setBoard,
+    setIsHover,
+    hoverColumn,
+    setHoverColumn,
+    currentPlayer,
+    setCurrentPlayer,
+    winner,
+    setWinner,
+    gameOver,
+    setGameOver,
+    victoriesPlayerOne,
+    setVictoriesPlayerOne,
+    victoriesPlayerTwo,
+    setVictoriesPlayerTwo,
+    setWinningBoard
   } = useContext(Context);
   // Función para manejar el color seleccionado uno y el error.
-  const handleColorUno = (color) => {
-    if (colorSeleccionadoDos === color) {
-      setColorSeleccionadoUno(color);
+  const handleColorOne = (color) => {
+    if (selectedColorTwo === color) {
+      setSelectedColorOne(color);
       setErrorColor('¡Este color ya fue elegido por el jugador dos!');
       return;
     }
-    setColorSeleccionadoUno(color);
+    setSelectedColorOne(color);
     setErrorColor('');
   };
   // Función para manejar el color seleccionado dos y el error.
-  const handleColorDos = (color) => {
-    if (colorSeleccionadoUno === color) {
-      setColorSeleccionadoDos(color);
+  const handleColorTwo = (color) => {
+    if (selectedColorOne === color) {
+      setSelectedColorTwo(color);
       setErrorColor('¡Este color ya fue elegido por el jugador uno!');
       return;
     }
-    setColorSeleccionadoDos(color);
+    setSelectedColorTwo(color);
     setErrorColor('');
   };
   // Ver que todos los campos estén completados y que los nombres sean distintos.
-  const isFormValid = colorSeleccionadoUno && colorSeleccionadoDos && jugadorUnoName && jugadorDosName;
-  const isNameValid = ((!jugadorUnoName || !jugadorDosName) || (jugadorUnoName !== jugadorDosName));
+  const isFormValid = selectedColorOne && selectedColorTwo && namePlayerOne && namePlayerTwo;
+  const isNameValid = ((!namePlayerOne || !namePlayerTwo) || (namePlayerOne !== namePlayerTwo));
   // Manejar los errores de nombres y campos.
   const handlePlayClick = (e) => {
     if (errorColor || !isNameValid) {
@@ -68,71 +67,71 @@ export const funciones = () => {
       setFormError('¡Debes completar todos los campos!');
     } else {
       try {
-        sessionStorage.setItem('nombreUno', jugadorUnoName);
-        sessionStorage.setItem('nombreDos', jugadorDosName);
-        sessionStorage.setItem('colorUno', colorSeleccionadoUno);
-        sessionStorage.setItem('colorDos', colorSeleccionadoDos);
+        sessionStorage.setItem('namePlayerOne', namePlayerOne);
+        sessionStorage.setItem('namePlayerTwo', namePlayerTwo);
+        sessionStorage.setItem('selectedColorOne', selectedColorOne);
+        sessionStorage.setItem('selectedColorTwo', selectedColorTwo);
 
       } catch (error) {
         console.log(error);
       }
       setFormError('');
-      setJugadorActual(jugadorUnoName);
+      setCurrentPlayer(namePlayerOne);
     }
   };
   // useEffect para actualizar la cantidad de victorias en el storage
   useEffect(() => {
     try {
-      sessionStorage.setItem('victoriasUno', victoriasJugadorUno);
-      sessionStorage.setItem('victoriasDos', victoriasJugadorDos);
-      sessionStorage.setItem('jugadorActual', jugadorActual);
+      sessionStorage.setItem('victoriesPlayerOne', victoriesPlayerOne);
+      sessionStorage.setItem('victoriesPlayerTwo', victoriesPlayerTwo);
+      sessionStorage.setItem('currentPlayer', currentPlayer);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-  }, [victoriasJugadorUno, victoriasJugadorDos, jugadorActual]);
+  }, [victoriesPlayerOne, victoriesPlayerTwo, currentPlayer]);
   // useEffect para vaciar el error de campos dinamicamente
   useEffect(() => {
     if (isFormValid) {
       setFormError('');
     }
-  }, [colorSeleccionadoUno, colorSeleccionadoDos, jugadorUnoName, jugadorDosName, errorColor]);
+  }, [selectedColorOne, selectedColorTwo, namePlayerOne, namePlayerTwo, errorColor]);
   // useEffect mostrar el error de nombres dinamicamente
   useEffect(() => {
-    if (((jugadorUnoName && jugadorDosName) && jugadorUnoName === jugadorDosName)) {
+    if (((namePlayerOne && namePlayerTwo) && namePlayerOne === namePlayerTwo)) {
       setNameError('¡Los nombres deben ser distintos!');
     } else {
       setNameError('')
     }
-  }, [jugadorUnoName, jugadorDosName])
+  }, [namePlayerOne, namePlayerTwo])
   // Función para resetear el contador de victorias.
-  const resetearContador = () => {
-    setVictoriasJugadorUno(0);
-    setVictoriasJugadorDos(0);
+  const resetCounter = () => {
+    setVictoriesPlayerOne(0);
+    setVictoriesPlayerTwo(0);
   };
   // Función para resetear el tablero.
-  const resetearJuego = () => {
-    setJugadorActual(jugadorUnoName);
-    setTablero(tableroInicial);
+  const resetBoard = () => {
+    setCurrentPlayer(namePlayerOne);
+    setBoard(initialBoard);
     setWinner(null);
     setGameOver(false);
     try {
-      sessionStorage.removeItem('tableroActual');
+      sessionStorage.removeItem('currentBoard');
     } catch (error) {
       console.error(error);
     }
   };
   // Función para manejar el hover en la celda.
-  const handleEnterHover = (columna) => {
+  const handleEnterHover = (column) => {
     // Copia profunda del tablero, se copia la referencia a las celdas, no a las filas.
-    // 'const tableroCopia = [...tablero]'.
-    const tableroCopia = tablero.map((fila) => [...fila]);
+    // 'const copyBoard = [...board]'.
+    const copyBoard = board.map((row) => [...row]);
     // Recorro la copia del tablero.
     // Cambio el valor de isHover por el índice de fila de la última celda vacía.
     // Cambio el valor hoverColumn, por el índice de la columna en la que me encuentro.
-    for (let i = tableroCopia.length - 1; i >= 0; i--) {
-      if (tableroCopia[i][columna] === null) {
+    for (let i = copyBoard.length - 1; i >= 0; i--) {
+      if (copyBoard[i][column] === null) {
         setIsHover(i);
-        setHoverColumn(columna);
+        setHoverColumn(column);
         return;
       }
     }
@@ -140,35 +139,35 @@ export const funciones = () => {
     setHoverColumn(null);
   };
   // Función para manejar el click en las celdas.
-  const handleClick = (columna) => {
+  const handleClick = (column) => {
     if (winner || gameOver) return; 
     // Copia profunda del tablero, se copia la referencia a las celdas, no a las filas.
-    // 'const tableroCopia = [...tablero]'.
-    const tableroCopia = tablero.map((fila) => [...fila]);
+    // 'const copyBoard = [...tablero]'.
+    const copyBoard = board.map((row) => [...row]);
     // Recorro la copia del tablero y cambio el valor de la última celda disponible por 1 o 2, dependiendo del jugador actual.
-    for (let i = tableroCopia.length - 1; i >= 0; i--) {
-      if (tableroCopia[i][columna] === null) {
-        tableroCopia[i][columna] = jugadorActual === jugadorUnoName ? 1 : 2;
-        setTablero(tableroCopia);
-        handleEnterHover(columna);
+    for (let i = copyBoard.length - 1; i >= 0; i--) {
+      if (copyBoard[i][column] === null) {
+        copyBoard[i][column] = currentPlayer === namePlayerOne ? 1 : 2;
+        setBoard(copyBoard);
+        handleEnterHover(column);
         // Verifico si se cumple alguna condición de victoria.
         if (
-          cuatroEnFila(tableroCopia) ||
-          cuatroEnColumna(tableroCopia) ||
-          cuatroDiagonalIzq(tableroCopia) ||
-          cuatroDiagonalDer(tableroCopia)
+          checkWinnerInRow(copyBoard) ||
+          checkWinnerInColumn(copyBoard) ||
+          checkWinnerInDiagonalDown(copyBoard) ||
+          checkWinnerInDiagonalUp(copyBoard)
         ) {
-          setWinner(jugadorActual);
+          setWinner(currentPlayer);
         } else {
-          setJugadorActual(jugadorActual === jugadorUnoName ? jugadorDosName : jugadorUnoName);
+          setCurrentPlayer(currentPlayer === namePlayerOne ? namePlayerTwo : namePlayerOne);
           try {
-            sessionStorage.setItem('tableroActual' ,JSON.stringify(tableroCopia));
+            sessionStorage.setItem('currentBoard' ,JSON.stringify(copyBoard));
           } catch (error) {
             console.log(error);
           }
         }
         //  Verifico si el juego termina en empate.
-        if (isGameOver(tableroCopia)) {
+        if (isGameOver(copyBoard)) {
           setGameOver(true);
         }
         return;
@@ -176,95 +175,95 @@ export const funciones = () => {
     }
   };
   // Función para verificar si todas las celdas del tablero tienen un valor distinto a null.
-  const isGameOver = (tablero) => {
-    return tablero.flat().every((valorCelda) => valorCelda !== null);
+  const isGameOver = (board) => {
+    return board.flat().every((valueCell) => valueCell !== null);
   }
   // Función para verificar si hay 4 fichas del mismo jugador consecutivas en una fila.
-  const cuatroEnFila = (tablero) => {
-    const filas = tablero.length;
-    const columnas = tablero[0].length;
+  const checkWinnerInRow = (board) => {
+    const rows = board.length;
+    const columns = board[0].length;
 
-    for (let fila = 0; fila < filas; fila++) {
-      for (let columna = 0; columna <= columnas - 4; columna++) {
-        const celda = tablero[fila][columna];
+    for (let row = 0; row < rows; row++) {
+      for (let column = 0; column <= columns - 4; column++) {
+        const celda = board[row][column];
         if (
           celda
           &&
-          celda === tablero[fila][columna + 1]
+          celda === board[row][column + 1]
           &&
-          celda === tablero[fila][columna + 2]
+          celda === board[row][column + 2]
           &&
-          celda === tablero[fila][columna + 3]
+          celda === board[row][column + 3]
         ) {
-          setWinner(jugadorActual);
+          setWinner(currentPlayer);
           return;
         }
       }
     }
   }
-  // Función para verificar si hay 4 fichas del mismo jugador consecutivas en una columna.
-  const cuatroEnColumna = (tablero) => {
-    const filas = tablero.length;
-    const columnas = tablero[0].length;
+  // Función para verificar si hay 4 fichas del mismo jugador consecutivas en una column.
+  const checkWinnerInColumn = (board) => {
+    const rows = board.length;
+    const columns = board[0].length;
 
-    for (let fila = 0; fila <= filas - 4; fila++) {
-      for (let columna = 0; columna <= columnas; columna++) {
-        const celda = tablero[fila][columna];
+    for (let row = 0; row <= rows - 4; row++) {
+      for (let column = 0; column <= columns; column++) {
+        const celda = board[row][column];
         if (
           celda
           &&
-          celda === tablero[fila + 1][columna]
+          celda === board[row + 1][column]
           &&
-          celda === tablero[fila + 2][columna]
+          celda === board[row + 2][column]
           &&
-          celda === tablero[fila + 3][columna]
+          celda === board[row + 3][column]
         ) {
-          setWinner(jugadorActual);
+          setWinner(currentPlayer);
         }
       }
     }
   }
   // Función para verificar si hay 4 fichas del mismo jugador consecutivas en diagonal, de izquiera arriba a dercha abajo.
-  const cuatroDiagonalIzq = (tablero) => {
-    const filas = tablero.length;
-    const columnas = tablero[0].length;
+  const checkWinnerInDiagonalDown = (board) => {
+    const rows = board.length;
+    const columns = board[0].length;
 
-    for (let fila = 0; fila <= filas - 4; fila++) {
-      for (let columna = 0; columna <= columnas - 4; columna++) {
-        const celda = tablero[fila][columna];
+    for (let row = 0; row <= rows - 4; row++) {
+      for (let column = 0; column <= columns - 4; column++) {
+        const celda = board[row][column];
         if (
           celda
           &&
-          celda === tablero[fila + 1][columna + 1]
+          celda === board[row + 1][column + 1]
           &&
-          celda === tablero[fila + 2][columna + 2]
+          celda === board[row + 2][column + 2]
           &&
-          celda === tablero[fila + 3][columna + 3]
+          celda === board[row + 3][column + 3]
         ) {
-          setWinner(jugadorActual);
+          setWinner(currentPlayer);
           return;
         }
       }
     }
   }
   // Función para verificar si hay 4 fichas del mismo jugador consecutivas en diagonal, de izquiera abajo a derecha arriba.
-  const cuatroDiagonalDer = (tablero) => {
-    const filas = tablero.length;
-    const columnas = tablero[0].length;
+  const checkWinnerInDiagonalUp = (board) => {
+    const rows = board.length;
+    const columns = board[0].length;
 
-    for (let fila = 3; fila < filas; fila++) {
-      for (let columna = 0; columna <= columnas - 4; columna++) {
-        const celda = tablero[fila][columna];
+    for (let row = 3; row < rows; row++) {
+      for (let column = 0; column <= columns - 4; column++) {
+        const celda = board[row][column];
         if (
           celda
           &&
-          celda === tablero[fila - 1][columna + 1]
+          celda === board[row - 1][column + 1]
           &&
-          celda === tablero[fila - 2][columna + 2]
+          celda === board[row - 2][column + 2]
           &&
-          celda === tablero[fila - 3][columna + 3]
+          celda === board[row - 3][column + 3]
         ) {
-          setWinner(jugadorActual);
+          setWinner(currentPlayer);
           return;
         }
       }
@@ -275,7 +274,7 @@ export const funciones = () => {
     if (hoverColumn !== null) {
       handleEnterHover(hoverColumn);
     }
-  }, [tablero, jugadorActual]);
+  }, [board, currentPlayer]);
   // useEffect para mostrar mensaje de empate y resetear el juego.
   useEffect(() => {
     if (gameOver) {
@@ -290,14 +289,14 @@ export const funciones = () => {
         },
       })
       setTimeout(() => {
-        resetearJuego();
+        resetBoard();
       }, 1500);
     }
   }, [gameOver]);
   // useEffect para mostrar mensaje de ganador y resetear el juego.
   useEffect(() => {
     if (winner) {
-      const colorClase = winner === jugadorUnoName ? colorSeleccionadoUno : colorSeleccionadoDos;
+      const colorClase = winner === namePlayerOne ? selectedColorOne : selectedColorTwo;
 
       Swal.fire({
         title: `${winner} ha ganado la ronda`,
@@ -310,31 +309,27 @@ export const funciones = () => {
         },
       })
       setTimeout(() => {    
-        setTableroGanador(tablero);
-        sessionStorage.setItem('tableroGanador' ,JSON.stringify(tablero));
-        resetearJuego();
+        setWinningBoard(board);
+        sessionStorage.setItem('winningBoard' ,JSON.stringify(board));
+        resetBoard();
       }, 1500);
       // Aumento el contador de victorias del jugador que gana la ronda.
-      if (winner === jugadorUnoName) {
-        setVictoriasJugadorUno(victoriasJugadorUno + 1);
-      } else if (winner === jugadorDosName) {
-        setVictoriasJugadorDos(victoriasJugadorDos + 1);
+      if (winner === namePlayerOne) {
+        setVictoriesPlayerOne(victoriesPlayerOne + 1);
+      } else if (winner === namePlayerTwo) {
+        setVictoriesPlayerTwo(victoriesPlayerTwo + 1);
       }
     }
   }, [winner]);
   // Retorno las funciones.
   return ({
-    resetearContador,
-    resetearJuego,
+    resetCounter,
+    resetBoard,
     handleClick,
     isGameOver,
-    cuatroEnFila,
-    cuatroEnColumna,
-    cuatroDiagonalIzq,
-    cuatroDiagonalDer,
     handleEnterHover,
-    handleColorUno,
-    handleColorDos,
+    handleColorOne,
+    handleColorTwo,
     handlePlayClick,
     isFormValid,
     isNameValid,
