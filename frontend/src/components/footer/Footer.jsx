@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styles from './Footer.module.css';
 import MenuIcon from "@mui/icons-material/Menu";
+import OpcionesModal from './opciones/OpcionesModal';
 
 const Footer = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={styles.footer}>
+    <footer className={styles.footer}>
       <button 
         className={styles.btn_opciones}
         onClick={() => {setIsOpen(!isOpen)}}
@@ -15,7 +16,8 @@ const Footer = () => {
         <MenuIcon />
         Opciones
       </button>
-    </div>
+      {isOpen ? <OpcionesModal setIsOpen={setIsOpen}/> : ''}
+    </footer>
   )
 }
 

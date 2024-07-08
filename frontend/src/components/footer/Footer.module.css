@@ -1,23 +1,53 @@
 .footer {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 4.5rem;
-    background-color: rgba(255, 255, 255, 0.068);
+  background-color: rgba(255, 255, 255, 0.144);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.btn_opciones{
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1px;
-} 
+.btn_opciones {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  transition: transform .2s ease;
+}
+
+.btn_opciones:hover{
+  transform: scale(1.1);
+}
+
+.container_modal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.861);
+  z-index: 3;
+}
+
+.content_modal{
+  width: 500px;
+  height: 200px;
+  padding: 2rem;
+  border: 2px solid rgb(218, 218, 218);
+  border-radius: .5rem;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .sounds {
   display: flex;
@@ -28,8 +58,8 @@
   z-index: 2;
 }
 
-.padreDeSonidos{
-    position: relative;
+.padreDeSonidos {
+  position: relative;
 }
 
 .btn_bgMusic {
