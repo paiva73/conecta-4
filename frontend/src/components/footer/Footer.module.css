@@ -6,6 +6,7 @@
   width: 100%;
   height: 4.5rem;
   background-color: rgba(255, 255, 255, 0.144);
+  backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,10 +18,10 @@
   justify-content: center;
   align-items: center;
   gap: 1px;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
-.btn_opciones:hover{
+.btn_opciones:hover {
   transform: scale(1.1);
 }
 
@@ -37,29 +38,22 @@
   z-index: 3;
 }
 
-.content_modal{
-  width: 500px;
-  height: 200px;
-  padding: 2rem;
+.content_modal {
+  min-width: 400px;
+  min-height: 600px;
+  padding: 1rem;
   border: 2px solid rgb(218, 218, 218);
-  border-radius: .5rem;
-  background-color: black;
+  border-radius: 0.5rem;
+  background: rgb(0, 56, 91);
+  background: linear-gradient(
+    0deg,
+    rgb(113, 54, 99) 0%,
+    rgba(0, 127, 153, 1) 100%
+  );
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.sounds {
-  display: flex;
-  width: 100%;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  position: relative;
-  z-index: 2;
-}
-
-.padreDeSonidos {
-  position: relative;
 }
 
 .btn_bgMusic {
@@ -67,20 +61,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
+  position: relative;
   cursor: pointer;
-  padding-right: 0.5rem;
-  border-radius: 100%;
-}
-
-.btn_bgMusic:hover {
-  transform: scale(1.2);
-  transition: transform 0.2s ease-in;
+  color: rgb(255, 255, 255);
 }
 
 .handleVolume {
   width: 200px;
   position: absolute;
-  bottom: 50%;
-  left: 100%;
-  transform: translateY(50%);
+  top: 120%;
+}
+
+.btn_reglas {
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: rgb(255, 255, 255);
+  color: rgba(0, 56, 91, 1);
+  box-shadow: inset 0 2px 6px 0 rgba(0, 56, 91, 0.288),
+              0 1px 4px 0 rgba(0, 56, 91, 0.7);
+  padding: .6rem 1.2rem;
+  border-radius: .3rem;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+.btn_reglas:hover{
+  background-color: rgba(0, 56, 91, 0.600);
+  color: white;
 }

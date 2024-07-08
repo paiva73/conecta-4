@@ -56,8 +56,7 @@
 .player_title {
     padding-bottom: .5rem;
     margin-bottom: 1rem;
-    width: 100%;
-    border-bottom: 1px solid white;
+    text-decoration: underline;
 }
 
 .player input {
@@ -71,6 +70,7 @@
 
 .player input:focus {
     outline: none;
+    background-color: #b6255a41;
 }
 
 .player input::placeholder {
