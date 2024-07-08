@@ -8,6 +8,7 @@ import { WinningBoard } from './winningboard/WinningBoard';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Board from './board/Board';
 import boardFunctions from './board/boardFunctions';
+import Footer from '../footer/Footer';
 
 export const GameScreen = () => {
   const {
@@ -84,6 +85,7 @@ export const GameScreen = () => {
       Volver al inicio
       </NavLink>
       }
+      <Footer />
     </div>
   )
 }

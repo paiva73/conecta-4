@@ -1,0 +1,56 @@
+.footer {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.068);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn_opciones{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+} 
+
+.sounds {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.padreDeSonidos{
+    position: relative;
+}
+
+.btn_bgMusic {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding-right: 0.5rem;
+  border-radius: 100%;
+}
+
+.btn_bgMusic:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in;
+}
+
+.handleVolume {
+  width: 200px;
+  position: absolute;
+  bottom: 50%;
+  left: 100%;
+  transform: translateY(50%);
+}

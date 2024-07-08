@@ -4,6 +4,7 @@ import Context from "../../context/Context";
 import { NavLink } from "react-router-dom";
 import Player from "./player/Player";
 import homeFunctions from './homeFunctions'
+import Footer from "../footer/Footer";
 
 export const Home = () => {
   
@@ -80,6 +81,7 @@ export const Home = () => {
           </NavLink>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
