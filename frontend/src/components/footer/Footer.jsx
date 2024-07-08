@@ -16,7 +16,7 @@ const Footer = () => {
         <MenuIcon />
         Opciones
       </button>
-      {isOpen ? <OpcionesModal setIsOpen={setIsOpen}/> : ''}
+      <OpcionesModal isOpen={isOpen} setIsOpen={setIsOpen}/>
     </footer>
   )
 }

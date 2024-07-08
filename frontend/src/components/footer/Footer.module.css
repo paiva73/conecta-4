@@ -25,23 +25,53 @@
   transform: scale(1.1);
 }
 
+.active {
+  display: block;
+}
+
+.disabled {
+  display: none;
+}
+
 .container_modal {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   background-color: rgba(0, 0, 0, 0.861);
   z-index: 3;
 }
 
+.modal_center{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div p{
+  padding: 0 1rem;
+}
+
+div ul {
+  padding: 0 2rem;
+}
+div ul li{
+  list-style-type: circle;
+  margin-bottom: .3rem;
+}
+
 .content_modal {
   min-width: 400px;
+  max-width: 600px;
   min-height: 600px;
-  padding: 1rem;
+  max-height: 800px;
+  padding: 4rem 1rem;
   border: 2px solid rgb(218, 218, 218);
   border-radius: 0.5rem;
   background: rgb(0, 56, 91);
@@ -54,6 +84,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 3rem;
 }
 
 .btn_bgMusic {
@@ -70,22 +101,27 @@
 .handleVolume {
   width: 200px;
   position: absolute;
-  top: 120%;
+  top: 100%;
+  padding-top: .5rem;
 }
 
-.btn_reglas {
+.h3{
   font-weight: bold;
   letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
   background: rgb(255, 255, 255);
-  color: rgba(0, 56, 91, 1);
-  box-shadow: inset 0 2px 6px 0 rgba(0, 56, 91, 0.288),
-              0 1px 4px 0 rgba(0, 56, 91, 0.7);
+  background-color: rgba(0, 56, 91, 0.600);
+  color: white;
   padding: .6rem 1.2rem;
   border-radius: .3rem;
   cursor: pointer;
   transition: background-color .2s ease, color .2s ease;
+  margin-bottom: 1rem;
 }
-.btn_reglas:hover{
-  background-color: rgba(0, 56, 91, 0.600);
-  color: white;
+
+.container_sounds{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }

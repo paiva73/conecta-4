@@ -29,6 +29,15 @@ export const ContextProvider = ({ children }) => {
     const [victoriesPlayerTwo, setVictoriesPlayerTwo] = useState(parseInt(sessionStorage.getItem('victoriesPlayerTwo'), 10) || 0);
     const [winningBoard, setWinningBoard] = useState(JSON.parse(sessionStorage.getItem('winningBoard')) || null);
     const [isModalOpen, setIsModalOpen] = useState('');
+    // Footer / Opciones
+    const [musicIsActive, setMusicIsActive] = useState(false);
+    const [effectsIsActive, setEffectsIsActive] = useState(false);
+    const [volumeMusic, setVolumeMusic] = useState(0.25);
+    const [volumeEffects, setVolumeEffects] = useState(0.25);
+
+    const [musicIsHovered, setMusicIsHovered] = useState(null);
+    const [effectsIsHovered, setEffectsIsHovered] = useState(null);
+
     // Retorno los estados/setters
     return (
         <Context.Provider
@@ -71,7 +80,13 @@ export const ContextProvider = ({ children }) => {
                 setIsModalOpen,
                 winningBoard,
                 setWinningBoard,
-            }}
+                musicIsActive, setMusicIsActive,
+                effectsIsActive, setEffectsIsActive,
+                volumeMusic, setVolumeMusic,
+                volumeEffects, setVolumeEffects,
+                musicIsHovered, setMusicIsHovered,
+                effectsIsHovered, setEffectsIsHovered
+            }}  
         >
             {children}
         </Context.Provider>
