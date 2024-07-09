@@ -1,5 +1,8 @@
 import { useContext, useEffect } from "react";
 import Context from "../../../context/Context";
+import styles from '../GameScreen.module.css';
+import Swal from 'sweetalert2';
+import useCreateSound from "../../useCreateSound";
 
 const boardFunctions = () => {
   const {
@@ -18,6 +21,8 @@ const boardFunctions = () => {
     gameOver,
     setGameOver,
   } = useContext(Context);
+
+  const { handleEffectClick }= useCreateSound({src: './gameover.flac'})
 
   // Función para resetear el tablero.
   const resetBoard = () => {
@@ -179,6 +184,7 @@ const boardFunctions = () => {
   // useEffect para mostrar mensaje de empate y resetear el juego.
   useEffect(() => {
     if (gameOver) {
+      handleEffectClick();
       Swal.fire({
         title: `La ronda ha quedado en empate`,
         timer: 1500,
