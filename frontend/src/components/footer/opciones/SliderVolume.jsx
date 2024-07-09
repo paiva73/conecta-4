@@ -16,7 +16,7 @@ const SliderVolume = ({ onChange, value }) => {
           value={value}
           onChange={onChange}
           min={0}
-          max={.8}
+          max={1}
           step={0.001}
         />
         <VolumeUp />

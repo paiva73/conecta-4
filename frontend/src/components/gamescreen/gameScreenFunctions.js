@@ -3,6 +3,7 @@ import Context from '../../context/Context';
 import Swal from 'sweetalert2';
 import styles from './GameScreen.module.css';
 import boardFunctions from './board/boardFunctions';
+import useCreateSound from '../useCreateSound';
 
 export const gameScreenFunctions = () => {
   // Traigo todas las variables a utilizar desde el context.
@@ -21,6 +22,7 @@ export const gameScreenFunctions = () => {
     setWinningBoard
   } = useContext(Context);
 
+  const { handleEffectClick } = useCreateSound({src: './victory.mp3'})
   const {
     resetBoard
   } = boardFunctions();
@@ -43,10 +45,10 @@ export const gameScreenFunctions = () => {
   useEffect(() => {
     if (winner) {
       const colorClase = winner === namePlayerOne ? selectedColorOne : selectedColorTwo;
-
+      handleEffectClick()
       Swal.fire({
         title: `${winner} ha ganado la ronda`,
-        timer: 1500,
+        timer: 3000,
         timerProgressBar: true,
         showConfirmButton: false,
         customClass: {

@@ -35,7 +35,6 @@ const OpcionesModal = ({ isOpen, setIsOpen }) => {
 
   const handleMusicVolumeChange = (e, newValue) => {
     setVolumeMusic(newValue);
-    console.log(volumeMusic);
   };
 
   const handleEffectsVolumeChange = (e, newValue) => {
@@ -52,9 +51,10 @@ const OpcionesModal = ({ isOpen, setIsOpen }) => {
       <div className={styles.modal_center}>
         <div style={{ display: "none" }}>
           <ReactPlayer
-            url={"https://www.youtube.com/watch?v=jfKfPfyJRdk"}
+            url={'./bgMusic.mp3'}
             playing={musicIsActive}
             volume={volumeMusic}
+            loop={true}
           />
         </div>
         <div

@@ -80,6 +80,7 @@ export const ContextProvider = ({ children }) => {
                 setIsModalOpen,
                 winningBoard,
                 setWinningBoard,
+                // 
                 musicIsActive, setMusicIsActive,
                 effectsIsActive, setEffectsIsActive,
                 volumeMusic, setVolumeMusic,
