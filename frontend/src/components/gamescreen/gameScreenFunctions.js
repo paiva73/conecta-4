@@ -48,7 +48,7 @@ export const gameScreenFunctions = () => {
       handleEffectClick()
       Swal.fire({
         title: `${winner} ha ganado la ronda`,
-        timer: 3000,
+        timer: 2500,
         timerProgressBar: true,
         showConfirmButton: false,
         customClass: {

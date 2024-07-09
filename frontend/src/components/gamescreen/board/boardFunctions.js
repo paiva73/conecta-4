@@ -22,7 +22,7 @@ const boardFunctions = () => {
     setGameOver,
   } = useContext(Context);
 
-  const { handleEffectClick }= useCreateSound({src: './gameover.flac'})
+  const { handleEffectClick }= useCreateSound({src: './gameover.wav'})
 
   // Función para resetear el tablero.
   const resetBoard = () => {

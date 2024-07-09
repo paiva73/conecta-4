@@ -1,24 +1,26 @@
-import { useRef, useEffect } from 'react'
-import { Howl } from 'howler';
+import { useRef, useEffect, useContext } from "react";
+import { Howl } from "howler";
+import Context from "../context/Context";
 
-const useCreateSound = ({src}) => {
-    const clickSound = useRef(null);
+const useCreateSound = ({ src }) => {
+  const { volumeEffects } = useContext(Context);
+  const clickSound = useRef(null);
 
-    useEffect(() => {
-      clickSound.current = new Howl({
-        autoplay: false,
-        src: [src], 
-        volume: 0.5, 
-      });
-    }, []); 
-  
-    const handleEffectClick = () => {
-      clickSound.current.play(); 
-    };
+  useEffect(() => {
+    clickSound.current = new Howl({
+      autoplay: false,
+      src: [src],
+      volume: volumeEffects,
+    });
+  }, [volumeEffects]);
+
+  const handleEffectClick = () => {
+    clickSound.current.play();
+  };
 
   return {
-    handleEffectClick
+    handleEffectClick,
   };
 };
 
-export default useCreateSound
+export default useCreateSound;

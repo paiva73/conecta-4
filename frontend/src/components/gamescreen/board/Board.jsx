@@ -3,11 +3,14 @@ import { Cell } from "../cell/Cell";
 import Context from "../../../context/Context";
 import styles from '../GameScreen.module.css';
 import boardFunctions from "./boardFunctions";
+import useCreateSound from "../../useCreateSound";
 
 const Board = () => {
   const { board } = useContext(Context);
 
   const { handleClick, handleEnterHover } = boardFunctions();
+
+  const { handleEffectClick } = useCreateSound({src: './ficha.wav'})
 
   return (
     <div className={styles.board}>
@@ -23,6 +26,7 @@ const Board = () => {
                   key={indexColumn}
                   valueCell={valueCell}
                   handleEnterHover={handleEnterHover}
+                  handleEffectClick={handleEffectClick}
                 />
               );
             })}

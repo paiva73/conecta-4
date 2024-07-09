@@ -33,7 +33,7 @@ export const ContextProvider = ({ children }) => {
     const [musicIsActive, setMusicIsActive] = useState(false);
     const [effectsIsActive, setEffectsIsActive] = useState(false);
     const [volumeMusic, setVolumeMusic] = useState(0.25);
-    const [volumeEffects, setVolumeEffects] = useState(0.25);
+    const [volumeEffects, setVolumeEffects] = useState(0);
 
     const [musicIsHovered, setMusicIsHovered] = useState(null);
     const [effectsIsHovered, setEffectsIsHovered] = useState(null);

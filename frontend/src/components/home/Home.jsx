@@ -9,14 +9,6 @@ import Footer from "../footer/Footer";
 export const Home = () => {
   
   const {
-    handleColorOne,
-    handleColorTwo,
-    handlePlayClick,
-    isFormValid,
-    isNameValid,
-  } = homeFunctions();
-
-  const {
     selectedColorOne,
     selectedColorTwo,
     namePlayerOne,
@@ -27,6 +19,14 @@ export const Home = () => {
     formError,
     nameError,
   } = useContext(Context);
+
+  const {
+    handleColorOne,
+    handleColorTwo,
+    handlePlayClick,
+    isFormValid,
+    isNameValid,
+  } = homeFunctions();
 
   return (
     <div className={styles.home_container}>

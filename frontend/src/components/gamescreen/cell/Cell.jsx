@@ -2,9 +2,8 @@ import React, { useContext, useRef, useEffect } from 'react';
 import styles from '../GameScreen.module.css';
 import { Piece } from '../piece/Piece';
 import Context from '../../../context/Context';
-import useCreateSound from '../../useCreateSound';
 
-export const Cell = ({ valueCell, column, row, handleClick, handleEnterHover}) => {
+export const Cell = ({ valueCell, column, row, handleClick, handleEnterHover, handleEffectClick}) => {
 
   const { 
     isHover,
@@ -16,9 +15,6 @@ export const Cell = ({ valueCell, column, row, handleClick, handleEnterHover}) =
     isModalOpen,
     } = useContext(Context);
 
-  const {
-    handleEffectClick
-  } = useCreateSound({ src: './ficha.wav' });
   // Verifico:
   // Que la fila actual sea la fila que tiene el hover.
   // Que la columna actual sea la columna que tiene el hover.

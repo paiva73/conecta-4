@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import Context from "../../context/Context";
+import useCreateSound from "../useCreateSound";
 
 const homeFunctions = () => {
   const {
@@ -15,6 +16,8 @@ const homeFunctions = () => {
     setNameError,
     setCurrentPlayer,
   } = useContext(Context);
+
+  const { handleEffectClick } = useCreateSound({src: './click.mp3'});
 
   // Función para manejar el color seleccionado uno y el error.
   const handleColorOne = (color) => {
@@ -44,6 +47,7 @@ const homeFunctions = () => {
     !namePlayerOne || !namePlayerTwo || namePlayerOne !== namePlayerTwo;
   // Manejar los errores de nombres y campos.
   const handlePlayClick = (e) => {
+    handleEffectClick();
     if (errorColor || !isNameValid) {
       e.preventDefault();
       return null;
