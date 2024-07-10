@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Inicio.module.css";
 import Context from "../../context/Context";
 import { NavLink } from "react-router-dom";
 import Player from "./player/Player";
-import homeFunctions from './homeFunctions'
+import homeFunctions from "./homeFunctions";
 import Footer from "../footer/Footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
-  
   const {
     selectedColorOne,
     selectedColorTwo,
@@ -18,6 +19,8 @@ export const Home = () => {
     errorColor,
     formError,
     nameError,
+    isFirstStart,
+    setIsFirstStart,
   } = useContext(Context);
 
   const {
@@ -28,8 +31,28 @@ export const Home = () => {
     isNameValid,
   } = homeFunctions();
 
+  useEffect(() => {
+    toast.info('¡Puedes activar el sonido desde el apartado de Opciones! ✨', {
+      position: "top-right",
+      autoClose: 4000,
+      closeOnClick: true,
+      draggable: true,
+      theme: "dark",
+      onClose: () => setIsFirstStart(false),
+      });
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem('isFirstStart', JSON.stringify(isFirstStart));
+  }, [isFirstStart]);
+
   return (
     <div className={styles.home_container}>
+      {isFirstStart && (
+        <div>
+          <ToastContainer />
+        </div>
+      )}
       <img src="/wave3.svg" alt="" className={styles.home_svg} />
       <h1 className={styles.title}>Conecta cuatro</h1>
       <div className={styles.container_info}>

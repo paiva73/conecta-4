@@ -12,6 +12,7 @@ export const ContextProvider = ({ children }) => {
     const [errorColor, setErrorColor] = useState('');
     const [nameError, setNameError] = useState('');
     const [formError, setFormError] = useState('');
+    const [isFirstStart, setIsFirstStart] = useState(sessionStorage.getItem('isFirstStart') ? false : true);
     // GameScreen
     const initialBoard = Array.from({ length: 6 }, () => new Array(7).fill(null));
     const [board, setBoard] = useState(JSON.parse(sessionStorage.getItem('currentBoard')) || initialBoard);
@@ -58,6 +59,8 @@ export const ContextProvider = ({ children }) => {
                 setFormError,
                 nameError,
                 setNameError,
+                isFirstStart,
+                setIsFirstStart,
                 // GameScreen
                 initialBoard,
                 board,
