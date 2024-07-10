@@ -6,11 +6,11 @@ import useCreateSound from "../../useCreateSound";
 const Player = ({
   numberPlayer,
   name,
-  nameOnChange,
+  setName,
   colorOnClick,
   selectedColor,
 }) => {
-  const { colors } = useContext(Context);
+  const { homeState, setHomeState } = useContext(Context);
 
   const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 
@@ -22,10 +22,10 @@ const Player = ({
         placeholder="Ingresa nombre"
         value={name}
         onClick={handleEffectClick}
-        onChange={(event) => nameOnChange(event.target.value)}
+        onChange={(event) => setName(event.target.value)}
       />
       <div className={styles.container_colors}>
-        {colors.map((color) => (
+        {homeState.colors.map((color) => (
           <div
             key={color}
             className={`${styles.colors} ${

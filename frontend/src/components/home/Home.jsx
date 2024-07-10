@@ -10,17 +10,21 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const {
-    selectedColorOne,
-    selectedColorTwo,
-    namePlayerOne,
-    setNamePlayerOne,
-    namePlayerTwo,
-    setNamePlayerTwo,
-    errorColor,
-    formError,
-    nameError,
-    isFirstStart,
-    setIsFirstStart,
+    // selectedColorOne,
+    // selectedColorTwo,
+    // namePlayerOne,
+    // setNamePlayerOne,
+    // namePlayerTwo,
+    // setNamePlayerTwo,
+    // errorColor,
+    // formError,
+    // nameError,
+    // isFirstStart,
+    // setIsFirstStart,
+    homeState,
+    setHomeState,
+    gameScreenState,
+    setGameScreenState,
   } = useContext(Context);
 
   const {
@@ -38,17 +42,22 @@ export const Home = () => {
       closeOnClick: true,
       draggable: true,
       theme: "dark",
-      onClose: () => setIsFirstStart(false),
+      onClose: () => {
+        setHomeState((prevState) => ({
+          ...prevState,
+          isFirstStart: false
+        }));
+      },
       });
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem('isFirstStart', JSON.stringify(isFirstStart));
-  }, [isFirstStart]);
+    sessionStorage.setItem('isFirstStart', JSON.stringify(homeState.isFirstStart));
+  }, [homeState.isFirstStart]);
 
   return (
     <div className={styles.home_container}>
-      {isFirstStart && (
+      {homeState.isFirstStart && (
         <div>
           <ToastContainer />
         </div>
@@ -59,41 +68,47 @@ export const Home = () => {
         <div className={styles.players_container}>
           <Player
             numberPlayer={"uno"}
-            name={namePlayerOne}
-            nameOnChange={setNamePlayerOne}
+            name={homeState.namePlayerOne}
+            setName={(value) => {setHomeState((prevState) => ({
+              ...prevState,
+              namePlayerOne: value
+            }))}}
             colorOnClick={handleColorOne}
-            selectedColor={selectedColorOne}
+            selectedColor={homeState.selectedColorOne}
           />
 
           <Player
             numberPlayer={"dos"}
-            name={namePlayerTwo}
-            nameOnChange={setNamePlayerTwo}
+            name={homeState.namePlayerTwo}
+            setName={(value) => {setHomeState((prevState) => ({
+              ...prevState,
+              namePlayerTwo: value
+            }))}}
             colorOnClick={handleColorTwo}
-            selectedColor={selectedColorTwo}
+            selectedColor={homeState.selectedColorTwo}
           />
         </div>
 
-        {errorColor && (
+        {homeState.errorColor && (
           <div className={styles.div_center}>
-            <p className={styles.error}>{errorColor}</p>
+            <p className={styles.error}>{homeState.errorColor}</p>
           </div>
         )}
-        {formError && (
+        {homeState.formError && (
           <div className={styles.div_center}>
-            <p className={styles.error}>{formError}</p>
+            <p className={styles.error}>{homeState.formError}</p>
           </div>
         )}
-        {nameError && (
+        {homeState.nameError && (
           <div className={styles.div_center}>
-            <p className={styles.error}>{nameError}</p>
+            <p className={styles.error}>{homeState.nameError}</p>
           </div>
         )}
 
         <div className={styles.div_center}>
           <NavLink
             className={`${styles.btn_playGame} ${
-              !isFormValid || !isNameValid || errorColor
+              !isFormValid || !isNameValid || homeState.errorColor
                 ? styles.btn_disabled
                 : styles.btn_active
             }`}
