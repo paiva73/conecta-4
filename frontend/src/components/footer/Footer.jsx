@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Footer.module.css';
 import MenuIcon from "@mui/icons-material/Menu";
-import OpcionesModal from './opciones/OpcionesModal';
+import OptionsModal from './options/OptionsModal';
 import useCreateSound from '../useCreateSound';
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <button 
-        className={styles.btn_opciones}
+        className={styles.btn_options}
         onClick={() => {
           handleEffectClick()
           setIsOpen(!isOpen)
@@ -21,7 +21,7 @@ const Footer = () => {
         <MenuIcon />
         Opciones
       </button>
-      <OpcionesModal isOpen={isOpen} setIsOpen={setIsOpen}/>
+      <OptionsModal isOpen={isOpen} setIsOpen={setIsOpen}/>
     </footer>
   )
 }

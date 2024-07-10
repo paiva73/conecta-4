@@ -6,43 +6,31 @@ import HeadsetIcon from "@mui/icons-material/Headset";
 import HeadsetOffIcon from "@mui/icons-material/HeadsetOff";
 import SliderVolume from "./SliderVolume";
 import ReactPlayer from "react-player";
-import Context from '../../../context/Context'
+import Context from "../../../context/Context";
 import useCreateSound from "../../useCreateSound";
+import optionsFunctions from "./optionsFunctions";
 
-const OpcionesModal = ({ isOpen, setIsOpen }) => {
+const OptionsModal = ({ isOpen, setIsOpen }) => {
   const {
     musicIsActive,
-    setMusicIsActive,
-    effectsIsActive, 
-    setEffectsIsActive,
-    volumeMusic, 
-    setVolumeMusic,
-    volumeEffects, 
+    effectsIsActive,
+    volumeMusic,
+    volumeEffects,
     setVolumeEffects,
     musicIsHovered,
     setMusicIsHovered,
-    effectsIsHovered, 
+    effectsIsHovered,
     setEffectsIsHovered,
-
   } = useContext(Context);
-  
-  const handleMusicClick = () => {
-    setMusicIsActive(!musicIsActive);
-  };
 
-  const handleEffectsClick = () => {
-    setEffectsIsActive(!effectsIsActive);
-  };
+  const {
+    handleMusicClick,
+    handleEffectsClick,
+    handleMusicVolumeChange,
+    handleEffectsVolumeChange,
+  } = optionsFunctions();
 
-  const handleMusicVolumeChange = (e, newValue) => {
-    setVolumeMusic(newValue);
-  };
-
-  const handleEffectsVolumeChange = (e, newValue) => {
-    setVolumeEffects(newValue);
-  };
-
-  const { handleEffectClick } = useCreateSound({src: './click.mp3'})
+  const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 
   return (
     <div
@@ -57,7 +45,7 @@ const OpcionesModal = ({ isOpen, setIsOpen }) => {
       <div className={styles.modal_center}>
         <div style={{ display: "none" }}>
           <ReactPlayer
-            url={'./bgMusic.mp3'}
+            url={"./bgMusic.mp3"}
             playing={musicIsActive}
             volume={volumeMusic}
             loop={true}
@@ -102,15 +90,21 @@ const OpcionesModal = ({ isOpen, setIsOpen }) => {
             >
               Música
               {musicIsActive ? (
-                <MusicNoteIcon onClick={() => {
-                  handleMusicClick();
-                  handleEffectClick();
-                }} fontSize="large"/>
+                <MusicNoteIcon
+                  onClick={() => {
+                    handleMusicClick();
+                    handleEffectClick();
+                  }}
+                  fontSize="large"
+                />
               ) : (
-                <MusicOffIcon onClick={() => {
-                  handleMusicClick();
-                  handleEffectClick();
-                }} fontSize="large"/>
+                <MusicOffIcon
+                  onClick={() => {
+                    handleMusicClick();
+                    handleEffectClick();
+                  }}
+                  fontSize="large"
+                />
               )}
               {musicIsActive && musicIsHovered && (
                 <SliderVolume
@@ -121,23 +115,30 @@ const OpcionesModal = ({ isOpen, setIsOpen }) => {
               )}
             </div>
 
-            <div className={styles.btn_bgMusic}
+            <div
+              className={styles.btn_bgMusic}
               onMouseEnter={() => setEffectsIsHovered(true)}
               onMouseLeave={() => setEffectsIsHovered(false)}
             >
               Efectos
               {effectsIsActive ? (
-                <HeadsetIcon onClick={() => {
-                  handleEffectsClick();
-                  handleEffectClick();
-                  setVolumeEffects(0);
-                }} fontSize="large"/>
+                <HeadsetIcon
+                  onClick={() => {
+                    handleEffectsClick();
+                    handleEffectClick();
+                    setVolumeEffects(0);
+                  }}
+                  fontSize="large"
+                />
               ) : (
-                <HeadsetOffIcon onClick={() => {
-                  setVolumeEffects(0.25);
-                  handleEffectsClick();
-                  handleEffectClick();
-                }} fontSize="large"/>
+                <HeadsetOffIcon
+                  onClick={() => {
+                    setVolumeEffects(0.25);
+                    handleEffectsClick();
+                    handleEffectClick();
+                  }}
+                  fontSize="large"
+                />
               )}
               {effectsIsActive && effectsIsHovered && (
                 <SliderVolume
@@ -154,4 +155,4 @@ const OpcionesModal = ({ isOpen, setIsOpen }) => {
   );
 };
 
-export default OpcionesModal;
+export default OptionsModal;
