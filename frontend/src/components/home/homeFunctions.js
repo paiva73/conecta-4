@@ -28,7 +28,7 @@ const homeFunctions = () => {
     if (homeState.selectedColorTwo === color) {
       setHomeState((prevState) => ({
         ...prevState,
-        selectedColorTwo: color,
+        selectedColorOne: color,
         errorColor: '¡Este color ya fue elegido por el jugador dos!'
       }));  
       return;
@@ -55,9 +55,11 @@ const homeFunctions = () => {
       errorColor: ''
     }));  
   };
-  // Ver que todos los campos estén completados y que los nombres sean distintos.
+  // Ver que todos los campos estén completados.
   const isFormValid = 
     !!(homeState.selectedColorOne && homeState.selectedColorTwo && homeState.namePlayerOne && homeState.namePlayerTwo);
+
+    console.log(isFormValid);
 
   const isNameValid =
     !homeState.namePlayerOne || !homeState.namePlayerTwo || homeState.namePlayerOne !== homeState.namePlayerTwo;
@@ -72,7 +74,7 @@ const homeFunctions = () => {
       e.preventDefault();
       setHomeState((prevState) => ({
         ...prevState,
-        errorColor: '¡Debes completar todos los campos!'
+        formError: '¡Debes completar todos los campos!'
       }));  
       return null;
     } else {
