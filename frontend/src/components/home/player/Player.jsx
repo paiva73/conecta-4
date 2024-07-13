@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styles from "../Inicio.module.css";
+import styles from "../Home.module.css";
 import Context from "../../../context/Context";
 import useCreateSound from "../../useCreateSound";
 

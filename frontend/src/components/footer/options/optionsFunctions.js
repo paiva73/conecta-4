@@ -2,29 +2,43 @@ import { useContext } from "react";
 import Context from "../../../context/Context";
 
 const optionsFunctions = () => {
-  const {
-    musicIsActive,
-    setMusicIsActive,
-    effectsIsActive,
-    setEffectsIsActive,
-    setVolumeMusic,
-    setVolumeEffects,
-  } = useContext(Context);
+  // const {
+  //   musicIsActive,
+  //   setMusicIsActive,
+  //   effectsIsActive,
+  //   setEffectsIsActive,
+  //   setVolumeMusic,
+  //   setVolumeEffects,
+  // } = useContext(Context);
+
+  const { footerState, setFooterState } = useContext(Context);
 
   const handleMusicClick = () => {
-    setMusicIsActive(!musicIsActive);
+    setFooterState((prevState) => ({
+      ...prevState,
+      musicIsActive: !footerState.musicIsActive
+    }));
   };
 
   const handleEffectsClick = () => {
-    setEffectsIsActive(!effectsIsActive);
+    setFooterState((prevState) => ({
+      ...prevState,
+      effectsIsActive: !footerState.effectsIsActive
+    }));
   };
 
   const handleMusicVolumeChange = (e, newValue) => {
-    setVolumeMusic(newValue);
+    setFooterState((prevState) => ({
+      ...prevState,
+      volumeMusic: newValue
+    }));
   };
 
   const handleEffectsVolumeChange = (e, newValue) => {
-    setVolumeEffects(newValue);
+    setFooterState((prevState) => ({
+      ...prevState,
+      volumeEffects: newValue
+    }));
   };
 
   return {

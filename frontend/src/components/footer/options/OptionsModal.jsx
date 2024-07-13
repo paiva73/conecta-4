@@ -11,17 +11,19 @@ import useCreateSound from "../../useCreateSound";
 import optionsFunctions from "./optionsFunctions";
 
 const OptionsModal = ({ isOpen, setIsOpen }) => {
-  const {
-    musicIsActive,
-    effectsIsActive,
-    volumeMusic,
-    volumeEffects,
-    setVolumeEffects,
-    musicIsHovered,
-    setMusicIsHovered,
-    effectsIsHovered,
-    setEffectsIsHovered,
-  } = useContext(Context);
+  // const {
+  //   musicIsActive,
+  //   effectsIsActive,
+  //   volumeMusic,
+  //   volumeEffects,
+  //   setVolumeEffects,
+  //   musicIsHovered,
+  //   setMusicIsHovered,
+  //   effectsIsHovered,
+  //   setEffectsIsHovered,
+  // } = useContext(Context);
+
+  const { footerState, setFooterState } = useContext(Context);
 
   const {
     handleMusicClick,
@@ -46,8 +48,8 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
         <div style={{ display: "none" }}>
           <ReactPlayer
             url={"./bgMusic.mp3"}
-            playing={musicIsActive}
-            volume={volumeMusic}
+            playing={footerState.musicIsActive}
+            volume={footerState.volumeMusic}
             loop={true}
           />
         </div>
@@ -85,11 +87,21 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
           <div className={styles.container_sounds}>
             <div
               className={styles.btn_bgMusic}
-              onMouseEnter={() => setMusicIsHovered(true)}
-              onMouseLeave={() => setMusicIsHovered(false)}
+              onMouseEnter={() => {
+                setFooterState((prevState) => ({
+                  ...prevState,
+                  musicIsHovered: true,
+                }));
+              }}
+              onMouseLeave={() => {
+                setFooterState((prevState) => ({
+                  ...prevState,
+                  musicIsHovered: false,
+                }));
+              }}
             >
               Música
-              {musicIsActive ? (
+              {footerState.musicIsActive ? (
                 <MusicNoteIcon
                   onClick={() => {
                     handleMusicClick();
@@ -106,45 +118,69 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                   fontSize="large"
                 />
               )}
-              {musicIsActive && musicIsHovered && (
+              {footerState.musicIsActive && footerState.musicIsHovered && (
                 <SliderVolume
                   onChange={handleMusicVolumeChange}
-                  value={volumeMusic}
-                  onMouseEnter={() => setMusicIsHovered(true)}
+                  value={footerState.volumeMusic}
+                  onMouseEnter={() => ((prevState) => ({
+                    ...prevState,
+                    musicIsHovered: true
+                  }))}
                 />
               )}
             </div>
 
             <div
               className={styles.btn_bgMusic}
-              onMouseEnter={() => setEffectsIsHovered(true)}
-              onMouseLeave={() => setEffectsIsHovered(false)}
+              onMouseEnter={() => {
+                setFooterState((prevState) => ({
+                  ...prevState,
+                  effectsIsHovered: true
+                }));
+              }}
+              onMouseLeave={() => {
+                setFooterState((prevState) => ({
+                  ...prevState,
+                  effectsIsHovered: false
+                }));
+              }}
             >
               Efectos
-              {effectsIsActive ? (
+              {footerState.effectsIsActive ? (
                 <HeadsetIcon
                   onClick={() => {
                     handleEffectsClick();
                     handleEffectClick();
-                    setVolumeEffects(0);
+                    setFooterState((prevState) => ({
+                      ...prevState,
+                      volumeEffects: 0
+                    }));
                   }}
                   fontSize="large"
                 />
               ) : (
                 <HeadsetOffIcon
                   onClick={() => {
-                    setVolumeEffects(0.25);
+                    setFooterState((prevState) => ({
+                      ...prevState,
+                      volumeEffects: 0.25
+                    }));
                     handleEffectsClick();
                     handleEffectClick();
                   }}
                   fontSize="large"
                 />
               )}
-              {effectsIsActive && effectsIsHovered && (
+              {footerState.effectsIsActive && footerState.effectsIsHovered && (
                 <SliderVolume
                   onChange={handleEffectsVolumeChange}
-                  value={volumeEffects}
-                  onMouseEnter={() => setEffectsIsHovered(true)}
+                  value={footerState.volumeEffects}
+                  onMouseEnter={() => {
+                    ((prevState) => ({
+                      ...prevState,
+                      effectsIsHovered: true
+                    }));
+                  }}
                 />
               )}
             </div>

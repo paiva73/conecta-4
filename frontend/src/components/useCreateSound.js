@@ -3,16 +3,16 @@ import { Howl } from "howler";
 import Context from "../context/Context";
 
 const useCreateSound = ({ src }) => {
-  const { volumeEffects } = useContext(Context);
+  const { footerState } = useContext(Context);
   const clickSound = useRef(null);
 
   useEffect(() => {
     clickSound.current = new Howl({
       autoplay: false,
       src: [src],
-      volume: volumeEffects,
+      volume: footerState.volumeEffects,
     });
-  }, [volumeEffects]);
+  }, [footerState.volumeEffects]);
 
   const handleEffectClick = () => {
     clickSound.current.play();

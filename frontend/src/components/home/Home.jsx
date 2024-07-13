@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import styles from "./Inicio.module.css";
+import styles from "./Home.module.css";
 import Context from "../../context/Context";
 import { NavLink } from "react-router-dom";
 import Player from "./player/Player";
