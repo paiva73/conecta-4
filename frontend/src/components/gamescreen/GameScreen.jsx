@@ -12,21 +12,23 @@ import Footer from "../footer/Footer";
 import useCreateSound from "../useCreateSound";
 
 export const GameScreen = () => {
-  const {
-    currentPlayer,
-    victoriesPlayerOne,
-    victoriesPlayerTwo,
-    namePlayerOne,
-    setNamePlayerOne,
-    namePlayerTwo,
-    setNamePlayerTwo,
-    setSelectedColorOne,
-    setSelectedColorTwo,
-    isModalOpen,
-    setIsModalOpen,
-    winningBoard,
-    setWinningBoard,
-  } = useContext(Context);
+  // const {
+  //   currentPlayer,
+  //   victoriesPlayerOne,
+  //   victoriesPlayerTwo,
+  //   namePlayerOne,
+  //   setNamePlayerOne,
+  //   namePlayerTwo,
+  //   setNamePlayerTwo,
+  //   setSelectedColorOne,
+  //   setSelectedColorTwo,
+  //   isModalOpen,
+  //   setIsModalOpen,
+  //   winningBoard,
+  //   setWinningBoard,
+  // } = useContext(Context);
+
+  const { gameScreenState, setGameScreenState, homeState, setHomeState } = useContext(Context);
 
   const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 
@@ -38,13 +40,13 @@ export const GameScreen = () => {
     <div className={styles.game_container}>
       <img src="/wave2.svg" alt="" className={styles.gameScreen_svg} />
       <div className={styles.controls_container}>
-        <h1 className={styles.currentPlayer}>Juega {currentPlayer}</h1>
+        <h1 className={styles.currentPlayer}>Juega {gameScreenState.currentPlayer}</h1>
         <h2 className={styles.rounds}>Rondas ganadas</h2>
         <h4>
-          {namePlayerOne} {victoriesPlayerOne}
+          {homeState.namePlayerOne} {gameScreenState.victoriesPlayerOne}
         </h4>
         <h4>
-          {namePlayerTwo} {victoriesPlayerTwo}
+          {homeState.namePlayerTwo} {gameScreenState.victoriesPlayerTwo}
         </h4>
       </div>
 
@@ -69,8 +71,11 @@ export const GameScreen = () => {
           className={styles.btn_control}
           onClick={() => {
             handleEffectClick();
-            if (winningBoard) {
-              setIsModalOpen(true);
+            if (gameScreenState.winningBoard) {
+              setGameScreenState((prevState) => ({
+                ...prevState,
+                isModalOpen: true
+              }))
             } else {
               return null;
             }
@@ -78,13 +83,16 @@ export const GameScreen = () => {
         >
           Último tablero ganador
         </button>
-        <WinningBoard isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+        <WinningBoard />
       </div>
-      {isModalOpen ? (
+      {gameScreenState.isModalOpen ? (
         <button
           onClick={() => {
             handleEffectClick();
-            setIsModalOpen(false);
+            setGameScreenState((prevState) => ({
+              ...prevState,
+              isModalOpen: false
+            }))
           }}
           className={`${styles.btn_back} ${styles.btn_closeModal}`}
         >
@@ -97,16 +105,25 @@ export const GameScreen = () => {
           className={styles.btn_back}
           onClick={() => {
             handleEffectClick();
-            if (isModalOpen) {
-              setIsModalOpen(false);
+            if (gameScreenState.isModalOpen) {
+              setGameScreenState((prevState) => ({
+                ...prevState,
+                isModalOpen: false
+              }))
             } else {
               resetBoard();
               resetCounter();
-              setNamePlayerOne("");
-              setNamePlayerTwo("");
-              setSelectedColorOne("");
-              setSelectedColorTwo("");
-              setWinningBoard(null);
+              setHomeState((prevState) => ({
+                ...prevState,
+                namePlayerOne: '',
+                namePlayerTwo: '',
+                selectedColorOne: '',
+                selectedColorTwo: '',
+              }))
+              setGameScreenState((prevState) => ({
+                ...prevState,
+                winningBoard: null
+              }))
               sessionStorage.clear();
             }
           }}

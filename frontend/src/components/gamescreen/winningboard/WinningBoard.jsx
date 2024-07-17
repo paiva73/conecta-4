@@ -4,26 +4,30 @@ import Context from '../../../context/Context';
 import { Cell } from '../cell/Cell';
 import useCreateSound from '../../useCreateSound';
 
-export const WinningBoard = ({ isOpen, setIsOpen }) => {
+export const WinningBoard = () => {
     const {
-        winningBoard
+        gameScreenState,
+        setGameScreenState
     } = useContext(Context);
 
     const { handleEffectClick } = useCreateSound({src: './click.mp3'})
 
-    if (!isOpen) {
+    if (!gameScreenState.isModalOpen) {
         return null;
     } else {
         return (
             <div className={styles.modal}
                 onClick={() => {
                     handleEffectClick();
-                    setIsOpen(false);
+                    setGameScreenState((prevState) => ({
+                        ...prevState,
+                        isModalOpen: false
+                    }));
                 }}
             >
                 <div className={styles.board_container}>
                     <div className={styles.board} onClick={(e) => e.stopPropagation()}>
-                        {winningBoard.map((row, indexRow) => {
+                        {gameScreenState.winningBoard.map((row, indexRow) => {
                             return (
                                 <div className={styles.column} key={indexRow}>
                                     {row.map((valueCell, indexColumn) => {

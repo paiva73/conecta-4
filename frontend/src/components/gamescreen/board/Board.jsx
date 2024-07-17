@@ -6,7 +6,7 @@ import boardFunctions from "./boardFunctions";
 import useCreateSound from "../../useCreateSound";
 
 const Board = () => {
-  const { board } = useContext(Context);
+  const  { gameScreenState } = useContext(Context);
 
   const { handleClick, handleEnterHover } = boardFunctions();
 
@@ -14,7 +14,7 @@ const Board = () => {
 
   return (
     <div className={styles.board}>
-      {board.map((row, indexRow) => {
+      {gameScreenState.board.map((row, indexRow) => {
         return (
           <div className={styles.column} key={indexRow}>
             {row.map((valueCell, indexColumn) => {

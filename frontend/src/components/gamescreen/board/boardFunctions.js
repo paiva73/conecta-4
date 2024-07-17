@@ -1,35 +1,46 @@
 import { useContext, useEffect } from "react";
 import Context from "../../../context/Context";
-import styles from '../GameScreen.module.css';
-import Swal from 'sweetalert2';
+import styles from "../GameScreen.module.css";
+import Swal from "sweetalert2";
 import useCreateSound from "../../useCreateSound";
 
 const boardFunctions = () => {
+  // const {
+  //   namePlayerOne,
+  //   namePlayerTwo,
+  //   initialBoard,
+  //   board,
+  //   setBoard,
+  //   setIsHover,
+  //   hoverColumn,
+  //   setHoverColumn,
+  //   currentPlayer,
+  //   setCurrentPlayer,
+  //   winner,
+  //   setWinner,
+  //   gameOver,
+  //   setGameOver,
+  // } = useContext(Context);
+
   const {
-    namePlayerOne,
-    namePlayerTwo,
+    gameScreenState,
+    setGameScreenState,
+    homeState,
+    setHomeState,
     initialBoard,
-    board,
-    setBoard,
-    setIsHover,
-    hoverColumn,
-    setHoverColumn,
-    currentPlayer,
-    setCurrentPlayer,
-    winner,
-    setWinner,
-    gameOver,
-    setGameOver,
   } = useContext(Context);
 
-  const { handleEffectClick }= useCreateSound({src: './gameover.wav'})
+  const { handleEffectClick } = useCreateSound({ src: "./gameover.wav" });
 
   // Función para resetear el tablero.
   const resetBoard = () => {
-    setCurrentPlayer(namePlayerOne);
-    setBoard(initialBoard);
-    setWinner(null);
-    setGameOver(false);
+    setGameScreenState((prevState) => ({
+      ...prevState,
+      currentPlayer: homeState.namePlayerOne,
+      board: initialBoard,
+      winner: null,
+      gameOver: false,
+    }));
     try {
       sessionStorage.removeItem("currentBoard");
     } catch (error) {
@@ -40,31 +51,41 @@ const boardFunctions = () => {
   const handleEnterHover = (column) => {
     // Copia profunda del tablero, se copia la referencia a las celdas, no a las filas.
     // 'const copyBoard = [...board]'.
-    const copyBoard = board.map((row) => [...row]);
+    const copyBoard = gameScreenState.board.map((row) => [...row]);
     // Recorro la copia del tablero.
     // Cambio el valor de isHover por el índice de fila de la última celda vacía.
     // Cambio el valor hoverColumn, por el índice de la columna en la que me encuentro.
     for (let i = copyBoard.length - 1; i >= 0; i--) {
       if (copyBoard[i][column] === null) {
-        setIsHover(i);
-        setHoverColumn(column);
+        setGameScreenState((prevState) => ({
+          ...prevState,
+          isHover: i,
+          hoverColumn: column,
+        }));
         return;
       }
     }
-    setIsHover(null);
-    setHoverColumn(null);
+    setGameScreenState((prevState) => ({
+      ...prevState,
+      isHover: null,
+      hoverColumn: null,
+    }));
   };
   // Función para manejar el click en las celdas.
   const handleClick = (column) => {
-    if (winner || gameOver) return;
+    if (gameScreenState.winner || gameScreenState.gameOver) return;
     // Copia profunda del tablero, se copia la referencia a las celdas, no a las filas.
     // 'const copyBoard = [...board]'.
-    const copyBoard = board.map((row) => [...row]);
+    const copyBoard = gameScreenState.board.map((row) => [...row]);
     // Recorro la copia del tablero y cambio el valor de la última celda disponible por 1 o 2, dependiendo del jugador actual.
     for (let i = copyBoard.length - 1; i >= 0; i--) {
       if (copyBoard[i][column] === null) {
-        copyBoard[i][column] = currentPlayer === namePlayerOne ? 1 : 2;
-        setBoard(copyBoard);
+        copyBoard[i][column] =
+          gameScreenState.currentPlayer === homeState.namePlayerOne ? 1 : 2;
+        setGameScreenState((prevState) => ({
+          ...prevState,
+          board: copyBoard,
+        }));
         handleEnterHover(column);
         // Verifico si se cumple alguna condición de victoria.
         if (
@@ -73,11 +94,18 @@ const boardFunctions = () => {
           checkWinnerInDiagonalDown(copyBoard) ||
           checkWinnerInDiagonalUp(copyBoard)
         ) {
-          setWinner(currentPlayer);
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            winner: gameScreenState.currentPlayer,
+          }));
         } else {
-          setCurrentPlayer(
-            currentPlayer === namePlayerOne ? namePlayerTwo : namePlayerOne
-          );
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            currentPlayer:
+              gameScreenState.currentPlayer === homeState.namePlayerOne
+                ? homeState.namePlayerTwo
+                : homeState.namePlayerOne,
+          }));
           try {
             sessionStorage.setItem("currentBoard", JSON.stringify(copyBoard));
           } catch (error) {
@@ -86,7 +114,10 @@ const boardFunctions = () => {
         }
         //  Verifico si el juego termina en empate.
         if (isGameOver(copyBoard)) {
-          setGameOver(true);
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            gameOver: true
+          }))
         }
         return;
       }
@@ -110,7 +141,10 @@ const boardFunctions = () => {
           celda === board[row][column + 2] &&
           celda === board[row][column + 3]
         ) {
-          setWinner(currentPlayer);
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            winner: gameScreenState.currentPlayer
+          }))
           return;
         }
       }
@@ -130,7 +164,10 @@ const boardFunctions = () => {
           celda === board[row + 2][column] &&
           celda === board[row + 3][column]
         ) {
-          setWinner(currentPlayer);
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            winner: gameScreenState.currentPlayer
+          }))
         }
       }
     }
@@ -149,7 +186,10 @@ const boardFunctions = () => {
           celda === board[row + 2][column + 2] &&
           celda === board[row + 3][column + 3]
         ) {
-          setWinner(currentPlayer);
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            winner: gameScreenState.currentPlayer
+          }))
           return;
         }
       }
@@ -169,7 +209,10 @@ const boardFunctions = () => {
           celda === board[row - 2][column + 2] &&
           celda === board[row - 3][column + 3]
         ) {
-          setWinner(currentPlayer);
+          setGameScreenState((prevState) => ({
+            ...prevState,
+            winner: gameScreenState.currentPlayer
+          }))
           return;
         }
       }
@@ -177,13 +220,13 @@ const boardFunctions = () => {
   };
   // useEffect para actualizar inmediatamente la ficha que se muestra por hover luego de colocar una ficha.
   useEffect(() => {
-    if (hoverColumn !== null) {
-      handleEnterHover(hoverColumn);
+    if (gameScreenState.hoverColumn !== null) {
+      handleEnterHover(gameScreenState.hoverColumn);
     }
-  }, [board, currentPlayer]);
+  }, [gameScreenState.board, gameScreenState.currentPlayer]);
   // useEffect para mostrar mensaje de empate y resetear el juego.
   useEffect(() => {
-    if (gameOver) {
+    if (gameScreenState.gameOver) {
       handleEffectClick();
       Swal.fire({
         title: `La ronda ha quedado en empate`,
@@ -199,7 +242,7 @@ const boardFunctions = () => {
         resetBoard();
       }, 1500);
     }
-  }, [gameOver]);
+  }, [gameScreenState.gameOver]);
 
   return {
     handleClick,

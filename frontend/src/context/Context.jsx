@@ -105,6 +105,8 @@ import React, { createContext, useState } from "react";
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
+    // Tablero inicial
+    const initialBoard = Array.from({ length: 6 }, () => new Array(7).fill(null));
     // Estado para la pantalla de inicio
     const [homeState, setHomeState] = useState({
         colors: ['red', 'blue', 'green', 'yellow', 'orange', 'purple'],
@@ -152,6 +154,8 @@ export const ContextProvider = ({ children }) => {
                 // Estado de la pantalla de juego
                 gameScreenState,
                 setGameScreenState,
+                // Tablero inicial
+                initialBoard,
                 // Estado del footer / opciones
                 footerState,
                 setFooterState,
