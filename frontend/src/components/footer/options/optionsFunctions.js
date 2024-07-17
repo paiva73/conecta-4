@@ -2,15 +2,6 @@ import { useContext } from "react";
 import Context from "../../../context/Context";
 
 const optionsFunctions = () => {
-  // const {
-  //   musicIsActive,
-  //   setMusicIsActive,
-  //   effectsIsActive,
-  //   setEffectsIsActive,
-  //   setVolumeMusic,
-  //   setVolumeEffects,
-  // } = useContext(Context);
-
   const { footerState, setFooterState } = useContext(Context);
 
   const handleMusicClick = () => {

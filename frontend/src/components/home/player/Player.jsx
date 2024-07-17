@@ -10,7 +10,7 @@ const Player = ({
   colorOnClick,
   selectedColor,
 }) => {
-  const { homeState, setHomeState } = useContext(Context);
+  const { homeState } = useContext(Context);
 
   const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 

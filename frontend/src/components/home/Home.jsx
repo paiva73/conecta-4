@@ -10,21 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const {
-    // selectedColorOne,
-    // selectedColorTwo,
-    // namePlayerOne,
-    // setNamePlayerOne,
-    // namePlayerTwo,
-    // setNamePlayerTwo,
-    // errorColor,
-    // formError,
-    // nameError,
-    // isFirstStart,
-    // setIsFirstStart,
     homeState,
     setHomeState,
-    gameScreenState,
-    setGameScreenState,
   } = useContext(Context);
 
   const {

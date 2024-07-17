@@ -5,28 +5,10 @@ import Swal from "sweetalert2";
 import useCreateSound from "../../useCreateSound";
 
 const boardFunctions = () => {
-  // const {
-  //   namePlayerOne,
-  //   namePlayerTwo,
-  //   initialBoard,
-  //   board,
-  //   setBoard,
-  //   setIsHover,
-  //   hoverColumn,
-  //   setHoverColumn,
-  //   currentPlayer,
-  //   setCurrentPlayer,
-  //   winner,
-  //   setWinner,
-  //   gameOver,
-  //   setGameOver,
-  // } = useContext(Context);
-
   const {
     gameScreenState,
     setGameScreenState,
     homeState,
-    setHomeState,
     initialBoard,
   } = useContext(Context);
 

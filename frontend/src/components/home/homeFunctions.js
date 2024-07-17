@@ -4,20 +4,8 @@ import useCreateSound from "../useCreateSound";
 
 const homeFunctions = () => {
   const {
-    // namePlayerOne,
-    // namePlayerTwo,
-    // selectedColorOne,
-    // setSelectedColorOne,
-    // selectedColorTwo,
-    // setSelectedColorTwo,
-    // errorColor,
-    // setErrorColor,
-    // setFormError,
-    // setNameError,
-    // setCurrentPlayer,
     homeState,
     setHomeState,
-    gameScreenState,
     setGameScreenState,
   } = useContext(Context);
 

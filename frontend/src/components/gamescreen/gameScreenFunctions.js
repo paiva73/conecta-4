@@ -6,23 +6,7 @@ import boardFunctions from './board/boardFunctions';
 import useCreateSound from '../useCreateSound';
 
 export const gameScreenFunctions = () => {
-  // Traigo todas las variables a utilizar desde el context.
-  // const {
-  //   namePlayerOne,
-  //   namePlayerTwo,
-  //   selectedColorOne,
-  //   selectedColorTwo,
-  //   board,
-  //   currentPlayer,
-  //   winner,
-  //   victoriesPlayerOne,
-  //   setVictoriesPlayerOne,
-  //   victoriesPlayerTwo,
-  //   setVictoriesPlayerTwo,
-  //   setWinningBoard
-  // } = useContext(Context);
-
-  const { gameScreenState, setGameScreenState, homeState, setHomeState } = useContext(Context);
+  const { gameScreenState, setGameScreenState, homeState } = useContext(Context);
 
   const { handleEffectClick } = useCreateSound({src: './victory.mp3'})
   const {

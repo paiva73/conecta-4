@@ -1,20 +1,9 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styles from '../GameScreen.module.css';
 import { Piece } from '../piece/Piece';
 import Context from '../../../context/Context';
 
 export const Cell = ({ valueCell, column, row, handleClick, handleEnterHover, handleEffectClick}) => {
-
-  // const { 
-  //   isHover,
-  //   hoverColumn, 
-  //   currentPlayer,
-  //   namePlayerOne,
-  //   selectedColorOne,
-  //   selectedColorTwo,
-  //   isModalOpen,
-  //   } = useContext(Context);
-
   const { gameScreenState, homeState } = useContext(Context);
 
   // Verifico:

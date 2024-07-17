@@ -12,22 +12,6 @@ import Footer from "../footer/Footer";
 import useCreateSound from "../useCreateSound";
 
 export const GameScreen = () => {
-  // const {
-  //   currentPlayer,
-  //   victoriesPlayerOne,
-  //   victoriesPlayerTwo,
-  //   namePlayerOne,
-  //   setNamePlayerOne,
-  //   namePlayerTwo,
-  //   setNamePlayerTwo,
-  //   setSelectedColorOne,
-  //   setSelectedColorTwo,
-  //   isModalOpen,
-  //   setIsModalOpen,
-  //   winningBoard,
-  //   setWinningBoard,
-  // } = useContext(Context);
-
   const { gameScreenState, setGameScreenState, homeState, setHomeState } = useContext(Context);
 
   const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });

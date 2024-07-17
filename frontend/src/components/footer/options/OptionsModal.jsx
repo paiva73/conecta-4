@@ -11,18 +11,6 @@ import useCreateSound from "../../useCreateSound";
 import optionsFunctions from "./optionsFunctions";
 
 const OptionsModal = ({ isOpen, setIsOpen }) => {
-  // const {
-  //   musicIsActive,
-  //   effectsIsActive,
-  //   volumeMusic,
-  //   volumeEffects,
-  //   setVolumeEffects,
-  //   musicIsHovered,
-  //   setMusicIsHovered,
-  //   effectsIsHovered,
-  //   setEffectsIsHovered,
-  // } = useContext(Context);
-
   const { footerState, setFooterState } = useContext(Context);
 
   const {
