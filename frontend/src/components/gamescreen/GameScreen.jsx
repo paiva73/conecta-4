@@ -12,7 +12,8 @@ import Footer from "../footer/Footer";
 import useCreateSound from "../useCreateSound";
 
 export const GameScreen = () => {
-  const { gameScreenState, setGameScreenState, homeState, setHomeState } = useContext(Context);
+  const { gameScreenState, setGameScreenState, homeState, setHomeState } =
+    useContext(Context);
 
   const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 
@@ -24,7 +25,9 @@ export const GameScreen = () => {
     <div className={styles.game_container}>
       <img src="/wave2.svg" alt="" className={styles.gameScreen_svg} />
       <div className={styles.controls_container}>
-        <h1 className={styles.currentPlayer}>Juega {gameScreenState.currentPlayer}</h1>
+        <h1 className={styles.currentPlayer}>
+          Juega {gameScreenState.currentPlayer}
+        </h1>
         <h2 className={styles.rounds}>Rondas ganadas</h2>
         <h4>
           {homeState.namePlayerOne} {gameScreenState.victoriesPlayerOne}
@@ -39,16 +42,22 @@ export const GameScreen = () => {
       </div>
 
       <div className={styles.controls_container}>
-        <button className={styles.btn_control} onClick={()=>{
-          resetCounter();
-          handleEffectClick();
-          }}>
+        <button
+          className={styles.btn_control}
+          onClick={() => {
+            resetCounter();
+            handleEffectClick();
+          }}
+        >
           Resetear victorias
         </button>
-        <button className={styles.btn_control} onClick={() => {
-          resetBoard();
-          handleEffectClick();
-          }}>
+        <button
+          className={styles.btn_control}
+          onClick={() => {
+            resetBoard();
+            handleEffectClick();
+          }}
+        >
           Resetear tablero
         </button>
         <button
@@ -58,8 +67,8 @@ export const GameScreen = () => {
             if (gameScreenState.winningBoard) {
               setGameScreenState((prevState) => ({
                 ...prevState,
-                isModalOpen: true
-              }))
+                isModalOpen: true,
+              }));
             } else {
               return null;
             }
@@ -75,8 +84,8 @@ export const GameScreen = () => {
             handleEffectClick();
             setGameScreenState((prevState) => ({
               ...prevState,
-              isModalOpen: false
-            }))
+              isModalOpen: false,
+            }));
           }}
           className={`${styles.btn_back} ${styles.btn_closeModal}`}
         >
@@ -92,22 +101,22 @@ export const GameScreen = () => {
             if (gameScreenState.isModalOpen) {
               setGameScreenState((prevState) => ({
                 ...prevState,
-                isModalOpen: false
-              }))
+                isModalOpen: false,
+              }));
             } else {
               resetBoard();
               resetCounter();
               setHomeState((prevState) => ({
                 ...prevState,
-                namePlayerOne: '',
-                namePlayerTwo: '',
-                selectedColorOne: '',
-                selectedColorTwo: '',
-              }))
+                namePlayerOne: "",
+                namePlayerTwo: "",
+                selectedColorOne: "",
+                selectedColorTwo: "",
+              }));
               setGameScreenState((prevState) => ({
                 ...prevState,
-                winningBoard: null
-              }))
+                winningBoard: null,
+              }));
               sessionStorage.clear();
             }
           }}

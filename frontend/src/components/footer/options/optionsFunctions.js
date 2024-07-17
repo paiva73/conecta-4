@@ -7,28 +7,28 @@ const optionsFunctions = () => {
   const handleMusicClick = () => {
     setFooterState((prevState) => ({
       ...prevState,
-      musicIsActive: !footerState.musicIsActive
+      musicIsActive: !footerState.musicIsActive,
     }));
   };
 
   const handleEffectsClick = () => {
     setFooterState((prevState) => ({
       ...prevState,
-      effectsIsActive: !footerState.effectsIsActive
+      effectsIsActive: !footerState.effectsIsActive,
     }));
   };
 
   const handleMusicVolumeChange = (e, newValue) => {
     setFooterState((prevState) => ({
       ...prevState,
-      volumeMusic: newValue
+      volumeMusic: newValue,
     }));
   };
 
   const handleEffectsVolumeChange = (e, newValue) => {
     setFooterState((prevState) => ({
       ...prevState,
-      volumeEffects: newValue
+      volumeEffects: newValue,
     }));
   };
 

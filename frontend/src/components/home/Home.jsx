@@ -5,14 +5,11 @@ import { NavLink } from "react-router-dom";
 import Player from "./player/Player";
 import homeFunctions from "./homeFunctions";
 import Footer from "../footer/Footer";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Home = () => {
-  const {
-    homeState,
-    setHomeState,
-  } = useContext(Context);
+  const { homeState, setHomeState } = useContext(Context);
 
   const {
     handleColorOne,
@@ -23,7 +20,7 @@ export const Home = () => {
   } = homeFunctions();
 
   useEffect(() => {
-    toast.info('¡Puedes activar el sonido desde el apartado de Opciones! ✨', {
+    toast.info("¡Puedes activar el sonido desde el apartado de Opciones! ✨", {
       position: "top-right",
       autoClose: 4000,
       closeOnClick: true,
@@ -32,14 +29,17 @@ export const Home = () => {
       onClose: () => {
         setHomeState((prevState) => ({
           ...prevState,
-          isFirstStart: false
+          isFirstStart: false,
         }));
       },
-      });
+    });
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem('isFirstStart', JSON.stringify(homeState.isFirstStart));
+    sessionStorage.setItem(
+      "isFirstStart",
+      JSON.stringify(homeState.isFirstStart)
+    );
   }, [homeState.isFirstStart]);
 
   return (
@@ -56,10 +56,12 @@ export const Home = () => {
           <Player
             numberPlayer={"uno"}
             name={homeState.namePlayerOne}
-            setName={(value) => {setHomeState((prevState) => ({
-              ...prevState,
-              namePlayerOne: value
-            }))}}
+            setName={(value) => {
+              setHomeState((prevState) => ({
+                ...prevState,
+                namePlayerOne: value,
+              }));
+            }}
             colorOnClick={handleColorOne}
             selectedColor={homeState.selectedColorOne}
           />
@@ -67,10 +69,12 @@ export const Home = () => {
           <Player
             numberPlayer={"dos"}
             name={homeState.namePlayerTwo}
-            setName={(value) => {setHomeState((prevState) => ({
-              ...prevState,
-              namePlayerTwo: value
-            }))}}
+            setName={(value) => {
+              setHomeState((prevState) => ({
+                ...prevState,
+                namePlayerTwo: value,
+              }));
+            }}
             colorOnClick={handleColorTwo}
             selectedColor={homeState.selectedColorTwo}
           />

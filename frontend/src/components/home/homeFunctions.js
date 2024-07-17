@@ -3,13 +3,9 @@ import Context from "../../context/Context";
 import useCreateSound from "../useCreateSound";
 
 const homeFunctions = () => {
-  const {
-    homeState,
-    setHomeState,
-    setGameScreenState,
-  } = useContext(Context);
+  const { homeState, setHomeState, setGameScreenState } = useContext(Context);
 
-  const { handleEffectClick } = useCreateSound({src: './click.mp3'});
+  const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 
   // Función para manejar el color seleccionado uno y el error.
   const handleColorOne = (color) => {
@@ -17,15 +13,15 @@ const homeFunctions = () => {
       setHomeState((prevState) => ({
         ...prevState,
         selectedColorOne: color,
-        errorColor: '¡Este color ya fue elegido por el jugador dos!'
-      }));  
+        errorColor: "¡Este color ya fue elegido por el jugador dos!",
+      }));
       return;
     }
     setHomeState((prevState) => ({
       ...prevState,
       selectedColorOne: color,
-      errorColor: ''
-    }));  
+      errorColor: "",
+    }));
   };
   // Función para manejar el color seleccionado dos y el error.
   const handleColorTwo = (color) => {
@@ -33,24 +29,30 @@ const homeFunctions = () => {
       setHomeState((prevState) => ({
         ...prevState,
         selectedColorTwo: color,
-        errorColor: '¡Este color ya fue elegido por el jugador uno!'
-      }));  
+        errorColor: "¡Este color ya fue elegido por el jugador uno!",
+      }));
       return;
     }
     setHomeState((prevState) => ({
       ...prevState,
       selectedColorTwo: color,
-      errorColor: ''
-    }));  
+      errorColor: "",
+    }));
   };
   // Ver que todos los campos estén completados.
-  const isFormValid = 
-    !!(homeState.selectedColorOne && homeState.selectedColorTwo && homeState.namePlayerOne && homeState.namePlayerTwo);
+  const isFormValid = !!(
+    homeState.selectedColorOne &&
+    homeState.selectedColorTwo &&
+    homeState.namePlayerOne &&
+    homeState.namePlayerTwo
+  );
 
-    console.log(isFormValid);
+  console.log(isFormValid);
 
   const isNameValid =
-    !homeState.namePlayerOne || !homeState.namePlayerTwo || homeState.namePlayerOne !== homeState.namePlayerTwo;
+    !homeState.namePlayerOne ||
+    !homeState.namePlayerTwo ||
+    homeState.namePlayerOne !== homeState.namePlayerTwo;
   // Manejar los errores de nombres y campos.
   const handlePlayClick = (e) => {
     handleEffectClick();
@@ -62,8 +64,8 @@ const homeFunctions = () => {
       e.preventDefault();
       setHomeState((prevState) => ({
         ...prevState,
-        formError: '¡Debes completar todos los campos!'
-      }));  
+        formError: "¡Debes completar todos los campos!",
+      }));
       return null;
     } else {
       try {
@@ -76,11 +78,11 @@ const homeFunctions = () => {
       }
       setHomeState((prevState) => ({
         ...prevState,
-        formError: ''
+        formError: "",
       }));
       setGameScreenState((prevState) => ({
         ...prevState,
-        currenPlayer: homeState.namePlayerOne
+        currenPlayer: homeState.namePlayerOne,
       }));
     }
   };
@@ -89,7 +91,7 @@ const homeFunctions = () => {
     if (isFormValid) {
       setHomeState((prevState) => ({
         ...prevState,
-        formError: ''
+        formError: "",
       }));
     }
   }, [
@@ -101,16 +103,20 @@ const homeFunctions = () => {
   ]);
   // useEffect mostrar el error de nombres dinamicamente
   useEffect(() => {
-    if (homeState.namePlayerOne && homeState.namePlayerTwo && homeState.namePlayerOne === homeState.namePlayerTwo) {
+    if (
+      homeState.namePlayerOne &&
+      homeState.namePlayerTwo &&
+      homeState.namePlayerOne === homeState.namePlayerTwo
+    ) {
       setHomeState((prevState) => ({
         ...prevState,
-        nameError: '¡Los nombres deben ser distintos!'
+        nameError: "¡Los nombres deben ser distintos!",
       }));
     } else {
       setHomeState((prevState) => ({
         ...prevState,
-        nameError: ''
-      }))
+        nameError: "",
+      }));
     }
   }, [homeState.namePlayerOne, homeState.namePlayerTwo]);
 
@@ -119,7 +125,7 @@ const homeFunctions = () => {
     handleColorTwo,
     handlePlayClick,
     isFormValid,
-    isNameValid
+    isNameValid,
   };
 };
 

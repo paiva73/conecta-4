@@ -110,10 +110,10 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                 <SliderVolume
                   onChange={handleMusicVolumeChange}
                   value={footerState.volumeMusic}
-                  onMouseEnter={() => ((prevState) => ({
+                  onMouseEnter={() => (prevState) => ({
                     ...prevState,
-                    musicIsHovered: true
-                  }))}
+                    musicIsHovered: true,
+                  })}
                 />
               )}
             </div>
@@ -123,13 +123,13 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
               onMouseEnter={() => {
                 setFooterState((prevState) => ({
                   ...prevState,
-                  effectsIsHovered: true
+                  effectsIsHovered: true,
                 }));
               }}
               onMouseLeave={() => {
                 setFooterState((prevState) => ({
                   ...prevState,
-                  effectsIsHovered: false
+                  effectsIsHovered: false,
                 }));
               }}
             >
@@ -141,7 +141,7 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                     handleEffectClick();
                     setFooterState((prevState) => ({
                       ...prevState,
-                      volumeEffects: 0
+                      volumeEffects: 0,
                     }));
                   }}
                   fontSize="large"
@@ -151,7 +151,7 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                   onClick={() => {
                     setFooterState((prevState) => ({
                       ...prevState,
-                      volumeEffects: 0.25
+                      volumeEffects: 0.25,
                     }));
                     handleEffectsClick();
                     handleEffectClick();
@@ -164,10 +164,10 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                   onChange={handleEffectsVolumeChange}
                   value={footerState.volumeEffects}
                   onMouseEnter={() => {
-                    ((prevState) => ({
+                    (prevState) => ({
                       ...prevState,
-                      effectsIsHovered: true
-                    }));
+                      effectsIsHovered: true,
+                    });
                   }}
                 />
               )}

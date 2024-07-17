@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
-import styles from '../Footer.module.css';
+import styles from "../Footer.module.css";
 
 const SliderVolume = ({ onChange, value }) => {
   return (

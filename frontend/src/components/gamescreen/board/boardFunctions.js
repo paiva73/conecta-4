@@ -5,12 +5,8 @@ import Swal from "sweetalert2";
 import useCreateSound from "../../useCreateSound";
 
 const boardFunctions = () => {
-  const {
-    gameScreenState,
-    setGameScreenState,
-    homeState,
-    initialBoard,
-  } = useContext(Context);
+  const { gameScreenState, setGameScreenState, homeState, initialBoard } =
+    useContext(Context);
 
   const { handleEffectClick } = useCreateSound({ src: "./gameover.wav" });
 
@@ -98,8 +94,8 @@ const boardFunctions = () => {
         if (isGameOver(copyBoard)) {
           setGameScreenState((prevState) => ({
             ...prevState,
-            gameOver: true
-          }))
+            gameOver: true,
+          }));
         }
         return;
       }
@@ -125,8 +121,8 @@ const boardFunctions = () => {
         ) {
           setGameScreenState((prevState) => ({
             ...prevState,
-            winner: gameScreenState.currentPlayer
-          }))
+            winner: gameScreenState.currentPlayer,
+          }));
           return;
         }
       }
@@ -148,8 +144,8 @@ const boardFunctions = () => {
         ) {
           setGameScreenState((prevState) => ({
             ...prevState,
-            winner: gameScreenState.currentPlayer
-          }))
+            winner: gameScreenState.currentPlayer,
+          }));
         }
       }
     }
@@ -170,8 +166,8 @@ const boardFunctions = () => {
         ) {
           setGameScreenState((prevState) => ({
             ...prevState,
-            winner: gameScreenState.currentPlayer
-          }))
+            winner: gameScreenState.currentPlayer,
+          }));
           return;
         }
       }
@@ -193,8 +189,8 @@ const boardFunctions = () => {
         ) {
           setGameScreenState((prevState) => ({
             ...prevState,
-            winner: gameScreenState.currentPlayer
-          }))
+            winner: gameScreenState.currentPlayer,
+          }));
           return;
         }
       }

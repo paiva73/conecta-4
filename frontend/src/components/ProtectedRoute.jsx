@@ -1,6 +1,6 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom';
+import React from "react";
+import { Navigate } from "react-router-dom";
 
 export const ProtectedRoute = ({ isAllowed, children }) => {
-      return isAllowed ? children : <Navigate to="/" />;
-}
+  return isAllowed ? children : <Navigate to="/" />;
+};

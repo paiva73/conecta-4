@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { Cell } from "../cell/Cell";
 import Context from "../../../context/Context";
-import styles from '../GameScreen.module.css';
+import styles from "../GameScreen.module.css";
 import boardFunctions from "./boardFunctions";
 import useCreateSound from "../../useCreateSound";
 
 const Board = () => {
-  const  { gameScreenState } = useContext(Context);
+  const { gameScreenState } = useContext(Context);
 
   const { handleClick, handleEnterHover } = boardFunctions();
 
-  const { handleEffectClick } = useCreateSound({src: './ficha.wav'})
+  const { handleEffectClick } = useCreateSound({ src: "./ficha.wav" });
 
   return (
     <div className={styles.board}>
