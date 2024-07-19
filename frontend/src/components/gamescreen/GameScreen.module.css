@@ -1,0 +1,250 @@
+.game_container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  color: white;
+  margin-top: 2.5rem;
+}
+
+.gameScreen_svg {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+}
+
+.board_container {
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.currentPlayer {
+  font-family: "Teko", sans-serif;
+  color: white;
+  letter-spacing: 2px;
+  min-width: 230px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem 0;
+  background: rgb(0, 56, 91);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 56, 91, 1) 0%,
+    rgba(0, 127, 153, 1) 100%
+  );
+  border-radius: 0.4rem;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgb(0, 56, 91);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 56, 91, 1) 0%,
+    rgba(0, 127, 153, 1) 100%
+  );
+  box-shadow: 0 5px 10px rgb(0, 0, 0);
+  border-radius: 1rem;
+  position: relative;
+}
+
+.board::before {
+  position: absolute;
+  content: "";
+  z-index: 999;
+  height: calc(100% - 25px);
+  width: calc(100% - 25px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  box-shadow: inset 0 3px 5px rgb(0, 0, 0),
+    inset 0px -1px 2px rgb(255, 255, 255);
+}
+
+.column {
+  display: flex;
+  gap: 1rem;
+}
+
+.cell {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  box-shadow: 0 -1px 2px rgb(255, 255, 255), 0 1px 5px rgb(0, 0, 0);
+  z-index: 999;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cell::before {
+  position: absolute;
+  content: "";
+  width: 85px;
+  height: 85px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0px 20px 10px rgb(12, 12, 12),
+    inset 0px -1px 1px rgba(255, 255, 255, 0.356);
+  border-radius: 100%;
+  z-index: 99;
+}
+
+.controls_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  z-index: 2;
+}
+
+.rounds {
+  font-size: 1.4rem;
+}
+
+.btn_control {
+  background: rgb(0, 56, 91);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 56, 91, 1) 0%,
+    rgba(0, 127, 153, 1) 100%
+  );
+  border: 2px solid rgb(255, 255, 255);
+  color: white;
+  border-radius: 0.3rem;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.controls_container button:hover {
+  transform: scale(1.1);
+}
+
+.alert_container {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5rem;
+  padding: 4rem 5rem;
+  border-radius: 1rem;
+  border: 2px solid white;
+  width: auto;
+  text-align: center;
+  align-content: center;
+  z-index: 2;
+}
+
+.alertTie_bg {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(53, 53, 53) 100%);
+}
+
+.alerta_title {
+  padding: 0;
+}
+
+.alert_container_red {
+  background: rgb(115, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(115, 0, 0, 1) 0%,
+    rgb(225, 83, 83) 100%
+  );
+}
+
+.alert_container_yellow {
+  background: rgb(164, 157, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(164, 157, 0, 1) 0%,
+    rgba(249, 241, 82, 1) 100%
+  );
+}
+
+.alert_container_blue {
+  background: rgb(0, 56, 91);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 56, 91, 1) 0%,
+    rgba(0, 127, 153, 1) 100%
+  );
+}
+
+.alert_container_green {
+  background: rgb(33, 164, 0);
+  background: linear-gradient(0deg, rgb(71, 164, 0) 0%, rgb(110, 249, 82) 100%);
+}
+
+.alert_container_orange {
+  background: rgb(130, 89, 0);
+  background: linear-gradient(0deg, rgb(164, 96, 0) 0%, rgb(249, 182, 82) 100%);
+}
+
+.alert_container_purple {
+  background: purple;
+  background: linear-gradient(
+    0deg,
+    rgb(133, 18, 133) 0%,
+    rgb(243, 82, 249) 100%
+  );
+}
+
+.btn_back {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 5rem 5rem 0;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.btn_back:hover {
+  transform: scale(1.1);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 2.5rem;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.861);
+}
+
+.btn_closeModal {
+  color: red;
+}
+
+@media (width > 1440px) {
+  .cell {
+    width: 110px;
+    height: 110px;
+  }
+
+  .cell::before {
+    width: 100px;
+    height: 100px;
+  }
+}
