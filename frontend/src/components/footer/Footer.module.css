@@ -97,10 +97,6 @@ div ul li {
   color: rgb(255, 255, 255);
 }
 
-.iconPointer {
-  cursor: pointer;
-}
-
 .handleVolume {
   width: 200px;
   position: absolute;
@@ -118,6 +114,7 @@ div ul li {
   color: white;
   padding: 0.6rem 1.2rem;
   border-radius: 0.3rem;
+  cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
   margin-bottom: 1rem;
 }
