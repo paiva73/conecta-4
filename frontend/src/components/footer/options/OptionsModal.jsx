@@ -96,6 +96,7 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                     handleEffectClick();
                   }}
                   fontSize="large"
+                  className={styles.iconPointer}
                 />
               ) : (
                 <MusicOffIcon
@@ -104,6 +105,7 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                     handleEffectClick();
                   }}
                   fontSize="large"
+                  className={styles.iconPointer}
                 />
               )}
               {footerState.musicIsActive && footerState.musicIsHovered && (
@@ -145,6 +147,7 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                     }));
                   }}
                   fontSize="large"
+                  className={styles.iconPointer}
                 />
               ) : (
                 <HeadsetOffIcon
@@ -157,6 +160,7 @@ const OptionsModal = ({ isOpen, setIsOpen }) => {
                     handleEffectClick();
                   }}
                   fontSize="large"
+                  className={styles.iconPointer}
                 />
               )}
               {footerState.effectsIsActive && footerState.effectsIsHovered && (
