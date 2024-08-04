@@ -1,9 +1,12 @@
 import { useContext, useEffect } from "react";
 import Context from "../../context/Context";
 import useCreateSound from "../useCreateSound";
+import { useNavigate } from "react-router-dom";
 
 const homeFunctions = () => {
   const { homeState, setHomeState, setGameScreenState } = useContext(Context);
+
+  const navigate = useNavigate();
 
   const { handleEffectClick } = useCreateSound({ src: "./click.mp3" });
 
@@ -84,6 +87,7 @@ const homeFunctions = () => {
         ...prevState,
         currenPlayer: homeState.namePlayerOne,
       }));
+      navigate("/gamescreen");
     }
   };
   // useEffect para vaciar el error de campos dinamicamente
