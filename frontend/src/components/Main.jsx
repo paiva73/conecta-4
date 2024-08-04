@@ -6,12 +6,6 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { Home } from "./home/Home";
 
 export const Main = () => {
-  const nameUno = sessionStorage.getItem("namePlayerOne");
-  const nameDos = sessionStorage.getItem("namePlayerTwo");
-  const colorOne = sessionStorage.getItem("selectedColorOne");
-  const colorTwo = sessionStorage.getItem("selectedColorTwo");
-
-  const isAllowed = nameUno && nameDos && colorOne && colorTwo;
 
   return (
     <div className={styles.container}>
@@ -20,7 +14,7 @@ export const Main = () => {
         <Route
           path="/gamescreen"
           element={
-            <ProtectedRoute isAllowed={isAllowed}>
+            <ProtectedRoute>
               <GameScreen />
             </ProtectedRoute>
           }
