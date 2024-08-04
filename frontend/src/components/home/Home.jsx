@@ -97,17 +97,16 @@ export const Home = () => {
         )}
 
         <div className={styles.div_center}>
-          <NavLink
+          <button
             className={`${styles.btn_playGame} ${
               !isFormValid || !isNameValid || homeState.errorColor
                 ? styles.btn_disabled
                 : styles.btn_active
             }`}
             onClick={handlePlayClick}
-            to={"/gamescreen"}
           >
             <span>¡A jugar!</span>
-          </NavLink>
+          </button>
         </div>
       </div>
       <Footer />
